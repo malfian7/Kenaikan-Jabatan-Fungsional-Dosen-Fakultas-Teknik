@@ -1,0 +1,128 @@
+/* ==========================================================================
+   NEXUS — Halaman publik (index, tentang kami). Memakai token dari nexus.css.
+   ========================================================================== */
+body.nx-site { background: var(--kertas-1); overflow-x: hidden; }
+.nx-wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+@media (max-width: 575.98px) { .nx-wrap { padding: 0 18px; } }
+
+/* ---------- Navigasi ---------- */
+.nx-site-nav { position: sticky; top: 0; z-index: 1030; background: rgba(243, 244, 249, 0.82); -webkit-backdrop-filter: saturate(1.4) blur(14px); backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid transparent; transition: border-color var(--dur-sedang) ease, background-color var(--dur-sedang) ease; }
+.nx-site-nav.is-scrolled { border-bottom-color: var(--garis); background: rgba(255, 255, 255, 0.88); }
+.nx-site-nav .nx-wrap { display: flex; align-items: center; gap: 24px; min-height: 72px; }
+.nx-site-brand { display: flex; align-items: center; gap: 12px; color: var(--tinta-1); font-weight: 800; letter-spacing: 0.02em; }
+.nx-site-brand:hover { color: var(--tinta-1); }
+.nx-site-brand img { width: 40px; height: 40px; padding: 5px; border-radius: 12px; background: var(--kertas-0); box-shadow: 0 0 0 1px var(--garis), var(--bayang-1); }
+.nx-site-brand small { display: block; font-size: 11.5px; font-weight: 500; letter-spacing: 0; color: var(--tinta-3); line-height: 1.2; }
+.nx-site-menu { display: flex; align-items: center; gap: 4px; margin: 0 0 0 auto; padding: 0; list-style: none; }
+.nx-site-menu a:not(.btn) { display: block; padding: 9px 14px; border-radius: var(--r-kontrol); font-size: 13.5px; font-weight: 600; color: var(--tinta-2); transition: background-color var(--dur-cepat) ease, color var(--dur-cepat) ease; }
+.nx-site-menu a:not(.btn):hover { background: var(--kertas-0); color: var(--tinta-1); }
+.nx-site-menu a.is-here { color: var(--stempel); background: var(--stempel-50); }
+.nx-site-menu .btn { margin-left: 8px; }
+@media (max-width: 575.98px) { .nx-site-brand small { display: none; } .nx-site-menu a:not(.btn) { padding: 8px 10px; } .nx-site-menu .btn { padding: 8px 12px; margin-left: 2px; } .nx-site-nav .nx-wrap { gap: 8px; } }
+
+/* ---------- Hero ---------- */
+.nx-hero { position: relative; padding: 56px 0 72px; }
+.nx-hero::before { content: ""; position: absolute; inset: -80px 0 auto 0; height: 560px; pointer-events: none;
+  background: radial-gradient(55% 60% at 85% 20%, rgba(139, 125, 240, 0.28) 0%, rgba(139, 125, 240, 0) 70%), radial-gradient(40% 50% at 5% 10%, rgba(11, 138, 163, 0.12) 0%, rgba(11, 138, 163, 0) 70%); }
+.nx-hero .nx-wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 56px; align-items: center; }
+@media (max-width: 991.98px) { .nx-hero .nx-wrap { grid-template-columns: 1fr; gap: 40px; } .nx-hero { padding: 36px 0 48px; } }
+.nx-pill { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; padding: 6px 14px 6px 8px; border-radius: 999px; background: var(--kertas-0); box-shadow: 0 0 0 1px var(--garis), var(--bayang-1); font-size: 12.5px; font-weight: 700; color: var(--tinta-2); }
+.nx-pill i { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--stempel); color: #fff; font-size: 10px; }
+.nx-hero h1 { margin: 0 0 18px; font-size: clamp(32px, 4.6vw, 54px); line-height: 1.07; font-weight: 800; letter-spacing: -0.04em; }
+.nx-hero h1 em { font-style: normal; color: var(--stempel); }
+.nx-hero .nx-lead { max-width: 520px; margin: 0 0 30px; font-size: 16.5px; line-height: 1.65; color: var(--tinta-2); }
+.nx-hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.nx-hero-cta .btn { padding: 13px 22px; font-size: 14px; border-radius: 12px; }
+.nx-btn-plain { background: var(--kertas-0); border-color: var(--garis-kuat); color: var(--tinta-1) !important; box-shadow: var(--bayang-1); }
+.nx-btn-plain:hover { background: var(--kertas-1); border-color: var(--tinta-4); }
+.nx-hero-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 28px 0 0; padding: 0; list-style: none; font-size: 13px; font-weight: 600; color: var(--tinta-3); }
+.nx-hero-meta li { display: inline-flex; align-items: center; gap: 8px; }
+.nx-hero-meta i { color: var(--lulus); font-size: 12px; }
+
+/* Kartu pratinjau (dekoratif) */
+.nx-preview { position: relative; padding: 22px; background: var(--kertas-0); border: 1px solid var(--garis); border-radius: 24px; box-shadow: 14px 14px 0 -1px var(--stempel-100), var(--bayang-3); }
+.nx-preview-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.nx-preview-top strong { font-size: 14px; font-weight: 700; }
+.nx-preview-top span { font-size: 11px; font-weight: 700; color: var(--tinta-5); letter-spacing: 0.08em; text-transform: uppercase; }
+.nx-preview .nx-ladder { margin-top: 8px; }
+.nx-mini-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 22px; }
+.nx-mini-stats div { padding: 12px 14px; border-radius: 12px; background: var(--kertas-1); }
+.nx-mini-stats b { display: block; font-size: 22px; line-height: 1; font-weight: 800; letter-spacing: -0.03em; }
+.nx-mini-stats span { display: block; margin-top: 6px; font-size: 11.5px; color: var(--tinta-3); font-weight: 600; }
+.nx-preview-row { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding: 12px 14px; border: 1px solid var(--garis); border-radius: 12px; font-size: 12.5px; font-weight: 600; color: var(--tinta-2); }
+.nx-preview-row .nx-badge { margin-left: auto; }
+
+/* ---------- Seksi umum ---------- */
+.nx-section { padding: 24px 0 72px; }
+.nx-section-head { max-width: 560px; margin-bottom: 32px; }
+.nx-section-head .nx-kicker { display: block; margin-bottom: 10px; font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stempel); }
+.nx-section-head h2 { margin: 0 0 10px; font-size: clamp(24px, 3vw, 34px); line-height: 1.15; font-weight: 800; letter-spacing: -0.035em; }
+.nx-section-head p { margin: 0; font-size: 15.5px; color: var(--tinta-2); }
+
+/* Kartu peran */
+.nx-roles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 899.98px) { .nx-roles { grid-template-columns: 1fr; } }
+.nx-role-card { position: relative; display: flex; flex-direction: column; padding: 26px; background: var(--kertas-0); border: 1px solid var(--garis); border-radius: 20px; box-shadow: var(--bayang-1); color: inherit;
+  transition: transform var(--dur-lambat) var(--ease-out), box-shadow var(--dur-lambat) var(--ease-out), border-color var(--dur-sedang) ease; }
+.nx-role-card:hover { color: inherit; }
+@media (hover: hover) and (pointer: fine) { .nx-role-card:hover { transform: translateY(-4px); box-shadow: var(--bayang-2); border-color: var(--stempel-200); } }
+.nx-role-card:active { transform: translateY(-1px) scale(0.995); }
+.nx-role-ico { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 22px; border-radius: 16px; background: var(--stempel-50); color: var(--stempel); font-size: 20px;
+  transition: background-color var(--dur-sedang) ease, color var(--dur-sedang) ease, transform var(--dur-lambat) var(--ease-out); }
+.nx-role-card:nth-child(2) .nx-role-ico { background: var(--kirim-bg); color: var(--kirim); }
+.nx-role-card:nth-child(3) .nx-role-ico { background: var(--lulus-bg); color: var(--lulus); }
+@media (hover: hover) and (pointer: fine) { .nx-role-card:hover .nx-role-ico { transform: scale(1.06) rotate(-3deg); } }
+.nx-role-card h3 { margin: 0 0 8px; font-size: 19px; font-weight: 800; letter-spacing: -0.025em; }
+.nx-role-card p { margin: 0 0 24px; font-size: 14px; color: var(--tinta-2); }
+.nx-role-go { display: inline-flex; align-items: center; gap: 10px; margin-top: auto; font-size: 13.5px; font-weight: 700; color: var(--stempel); }
+.nx-role-go i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--stempel-50); font-size: 11px; transition: transform var(--dur-sedang) var(--ease-out), background-color var(--dur-sedang) ease, color var(--dur-sedang) ease; }
+@media (hover: hover) and (pointer: fine) { .nx-role-card:hover .nx-role-go i { transform: translateX(4px); background: var(--stempel); color: #fff; } }
+
+/* Cara kerja */
+.nx-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; counter-reset: s; }
+@media (max-width: 991.98px) { .nx-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 575.98px) { .nx-steps { grid-template-columns: 1fr; } }
+.nx-step { position: relative; padding: 22px; background: var(--kertas-0); border: 1px solid var(--garis); border-radius: 18px; counter-increment: s; }
+.nx-step::before { content: counter(s, decimal-leading-zero); display: block; margin-bottom: 18px; font-size: 13px; font-weight: 800; letter-spacing: 0.08em; color: var(--stempel); }
+.nx-step h3 { margin: 0 0 6px; font-size: 16px; font-weight: 800; letter-spacing: -0.02em; }
+.nx-step p { margin: 0; font-size: 13.5px; color: var(--tinta-2); }
+
+/* Pita ajakan */
+.nx-band { margin: 8px 0 72px; padding: 36px 40px; border-radius: 24px; color: #fff;
+  background: radial-gradient(90% 120% at 100% 0%, rgba(139, 125, 240, 0.55), rgba(139, 125, 240, 0) 60%), linear-gradient(135deg, #2c2196, #5646e0);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.nx-band h2 { margin: 0 0 6px; color: #fff; font-size: 24px; font-weight: 800; letter-spacing: -0.03em; }
+.nx-band p { margin: 0; color: rgba(255, 255, 255, 0.8); font-size: 14.5px; }
+.nx-band .btn { background: #fff; color: var(--stempel) !important; border-color: #fff; padding: 13px 22px; border-radius: 12px; }
+.nx-band .btn:hover { background: var(--stempel-50); }
+@media (max-width: 575.98px) { .nx-band { padding: 26px 22px; } }
+
+/* Konten "Tentang kami" */
+.nx-article { max-width: 780px; margin: 0 auto; padding: 8px 0 72px; }
+.nx-article-card { padding: 40px 44px; background: var(--kertas-0); border: 1px solid var(--garis); border-radius: 24px; box-shadow: var(--bayang-1); }
+.nx-article h1 { margin: 0 0 8px; font-size: clamp(28px, 4vw, 40px); font-weight: 800; letter-spacing: -0.04em; }
+.nx-article h2 { margin: 0 0 22px; font-size: 17px; font-weight: 700; color: var(--tinta-3); letter-spacing: -0.01em; }
+.nx-article p { margin: 0 0 18px; font-size: 15.5px; line-height: 1.8; color: var(--tinta-2); }
+.nx-article p:last-child { margin-bottom: 0; }
+@media (max-width: 575.98px) { .nx-article-card { padding: 26px 22px; } }
+
+/* Footer */
+.nx-footer { border-top: 1px solid var(--garis); background: var(--kertas-0); }
+.nx-footer .nx-wrap { display: grid; grid-template-columns: 1.2fr 1fr auto; gap: 32px; padding-top: 36px; padding-bottom: 36px; align-items: start; }
+@media (max-width: 767.98px) { .nx-footer .nx-wrap { grid-template-columns: 1fr; gap: 20px; } }
+.nx-footer h4 { margin: 0 0 10px; font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tinta-3); }
+.nx-footer p { margin: 0 0 6px; font-size: 13.5px; color: var(--tinta-2); }
+.nx-footer .nx-copy { font-size: 12.5px; color: var(--tinta-3); }
+.nx-footer .nx-brandline { display: flex; align-items: center; gap: 12px; font-weight: 800; margin-bottom: 12px; }
+.nx-footer .nx-brandline img { width: 40px; height: 40px; }
+
+/* Masuk halaman: berurutan */
+.nx-hero .nx-wrap > *, .nx-roles > *, .nx-steps > *, .nx-band, .nx-article-card { animation: nx-rise 520ms var(--ease-out) backwards; }
+.nx-hero .nx-wrap > :nth-child(2) { animation-delay: 120ms; }
+.nx-roles > :nth-child(2), .nx-steps > :nth-child(2) { animation-delay: 70ms; }
+.nx-roles > :nth-child(3), .nx-steps > :nth-child(3) { animation-delay: 140ms; }
+.nx-steps > :nth-child(4) { animation-delay: 210ms; }
+@media (prefers-reduced-motion: reduce) {
+  .nx-hero .nx-wrap > *, .nx-roles > *, .nx-steps > *, .nx-band, .nx-article-card { animation: nx-fade 160ms ease backwards; animation-delay: 0ms; }
+  .nx-role-card:hover, .nx-role-card:hover .nx-role-ico, .nx-role-card:hover .nx-role-go i { transform: none; }
+}
