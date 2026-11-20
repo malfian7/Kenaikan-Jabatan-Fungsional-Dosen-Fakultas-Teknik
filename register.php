@@ -1,212 +1,89 @@
-<?php
-
-require_once("koneksi/conn.php");
-
-if (isset($_POST['register'])) {
-
-    // filter data yang diinputkan
-    $nip_dosen = filter_input(INPUT_POST, 'nip_dosen', FILTER_SANITIZE_STRING);
-    $nama_dosen = filter_input(INPUT_POST, 'nama_dosen', FILTER_SANITIZE_STRING);
-    // enkripsi password
-    $password_dosen = password_hash($_POST["password_dosen"], PASSWORD_DEFAULT);
-    $telepon_dosen = filter_input(INPUT_POST, 'telepon_dosen', FILTER_VALIDATE_EMAIL);
-
-
-    // menyiapkan query
-    $sql = "INSERT INTO dosen (nip_dosen, nama_dosen, telepon_dosen, password_dosen) 
-            VALUES (:nip_dosen, :nama_dosen, :telepon_dosen, :password_dosen)";
-    $stmt = $db->prepare($sql);
-
-    // bind parameter ke query
-    $params = array(
-        ":nip_dosen" => $nip_dosen,
-        ":nama_dosen" => $nama_dosen,
-        ":password_dosen" => $password_dosen,
-        ":telepon_dosen" => $telepon_dosen
-    );
-
-    // eksekusi query untuk menyimpan ke database
-    $saved = $stmt->execute($params);
-
-    // jika query simpan berhasil, maka user sudah terdaftar
-    // maka alihkan ke halaman login
-    if ($saved) header("Location: dosen/dosen_login.php");
-}
-
-?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="">
-    <meta name="keywords" content="au theme template">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Daftar akun dosen SIPAK Fakultas Teknik UHAMKA">
+	<meta name="author" content="">
 
-    <!-- Title Page-->
-    <title>Sistem Informasi Kenaikan Jabatan Dosen</title>
+	<link rel="manifest" href="site.webmanifest">
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/FT.png">
 
-    <!-- Fontfaces CSS-->
-    <link href="register/css/font-face.css" rel="stylesheet" media="all">
-    <link href="register/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="register/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="register/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    <link href="register/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
-    <!-- Vendor CSS-->
-    <link href="register/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="register/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="register/vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="register/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="register/vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="register/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="register/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../assets/css/gijgo.css">
-    <link rel="stylesheet" href="../assets/css/slicknav.css">
-    <link rel="stylesheet" href="../assets/css/animate.min.css">
-    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="../assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../assets/css/themify-icons.css">
-    <link rel="stylesheet" href="../assets/css/slick.css">
-    <link rel="stylesheet" href="../assets/css/nice-select.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/responsive.css">
-
-    <!-- Main CSS-->
-    <link href="register/css/theme.css" rel="stylesheet" media="all">
-
+	<title>Daftar · SIPAK</title>
+	<link href="asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="asset/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="asset/css/nexus.css" rel="stylesheet">
 </head>
 
-<body class="animsition">
-    <!-- Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/FT.png" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Preloader Start -->
-    <div class="page-wrapper">
-        <div class="page-content--bge5">
-            <div class="container">
-                <div class="login-wrap">
-                    <div class="login-content">
-                        <div class="login-logo">
-                            <a href="#">
-                                <img src="register/images/FT-500.png" alt="FT-UHAMKA">
-                            </a>
-                        </div>
-                        <div class="login-form">
-                            <form action="" method="post">
-                                <div class="form-group">
-                                    <label>NIDN</label>
-                                    <input class="au-input au-input--full" type="text" name="nidn" placeholder="NIDN">
-                                </div>
-                                <div class="form-group">
-                                    <label>Nama Lengkap</label>
-                                    <input class="au-input au-input--full" type="text" name="email" placeholder="Nama Lengkap">
-                                </div>
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
-                                </div>
-                                <div class="form-group">
-                                    <label>Telepon</label>
-                                    <input class="au-input au-input--full" type="text" name="telepon" placeholder="Telepon">
-                                </div>
-                                <div class="login-checkbox">
-                                    <label>
-                                        <input type="checkbox" name="aggree">Agree the terms and policy
-                                    </label>
-                                </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">register</button>
-                            </form>
-                            <div class="register-link">
-                                <p>
-                                    Anda sudah mempunyai akun?
-                                    <a href="dosen/dosen_login.php">Login</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<body class="nx-login">
+	<div class="nx-auth">
+		<aside class="nx-auth-aside">
+			<a class="nx-auth-brand" href="index.php"><img src="assets/img/logo/FT.png" alt="">SIPAK · Fakultas Teknik</a>
+			<div class="nx-auth-hero">
+				<h1>Mulai perjalanan kenaikan jabatan Anda.</h1>
+				<p>Buat akun dosen untuk menyimulasikan angka kredit, mengunggah berkas, dan memantau status pengajuan.</p>
+				<ul class="nx-auth-points">
+					<li>Simulasi angka kredit</li>
+					<li>Unggah berkas</li>
+					<li>Pantau status</li>
+				</ul>
+			</div>
+			<div class="nx-auth-foot">Sistem Informasi Kenaikan Jabatan Dosen · Universitas Muhammadiyah Prof. DR. HAMKA</div>
+		</aside>
 
-    </div>
+		<main class="nx-auth-main">
+			<div class="nx-auth-card">
+				<a class="nx-back" href="index.php"><i class="fas fa-arrow-left" aria-hidden="true"></i>Kembali ke beranda</a>
+				<h2>Daftar akun dosen</h2>
+				<p class="nx-sub">Lengkapi data berikut untuk membuat akun.</p>
 
-    <!-- Jquery JS-->
-    <script src="register/vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="register/vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="register/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="register/vendor/slick/slick.min.js">
-    </script>
-    <script src="register/vendor/wow/wow.min.js"></script>
-    <script src="register/vendor/animsition/animsition.min.js"></script>
-    <script src="register/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="register/vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="register/vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="register/vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="register/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="register/vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="register/vendor/select2/select2.min.js">
-    </script>
+				<form action="" method="post">
+					<div class="nx-field">
+						<label for="nidn">NIDN</label>
+						<div class="nx-input-wrap">
+							<i class="fas fa-id-card" aria-hidden="true"></i>
+							<input class="form-control" type="text" id="nidn" name="nidn" placeholder="Masukkan NIDN" autocomplete="username" inputmode="numeric">
+						</div>
+					</div>
+					<div class="nx-field">
+						<label for="email">Nama lengkap</label>
+						<div class="nx-input-wrap">
+							<i class="fas fa-user" aria-hidden="true"></i>
+							<input class="form-control" type="text" id="email" name="email" placeholder="Nama lengkap dan gelar" autocomplete="name">
+						</div>
+					</div>
+					<div class="nx-field">
+						<label for="password">Kata sandi</label>
+						<div class="nx-input-wrap">
+							<i class="fas fa-lock" aria-hidden="true"></i>
+							<input class="form-control" type="password" id="password" name="password" placeholder="Buat kata sandi" autocomplete="new-password">
+							<button type="button" class="nx-pw-toggle" data-target="password" aria-label="Tampilkan kata sandi" aria-pressed="false"><i class="fas fa-eye" aria-hidden="true"></i></button>
+						</div>
+					</div>
+					<div class="nx-field">
+						<label for="telepon">Telepon</label>
+						<div class="nx-input-wrap">
+							<i class="fas fa-phone" aria-hidden="true"></i>
+							<input class="form-control" type="text" id="telepon" name="telepon" placeholder="Nomor telepon" autocomplete="tel" inputmode="tel">
+						</div>
+					</div>
+					<div class="nx-field">
+						<label style="display:flex;align-items:center;gap:10px;font-weight:500;margin:0">
+							<input type="checkbox" name="aggree" style="width:16px;height:16px">Setuju dengan syarat dan ketentuan
+						</label>
+					</div>
+					<button class="btn btn-primary btn-block" type="submit">Daftar</button>
+				</form>
+				<p class="nx-alt">Anda sudah mempunyai akun? <a href="dosen/dosen_login.php">Login</a></p>
+			</div>
+		</main>
+	</div>
 
-    <!-- Main JS-->
-    <script src="register/js/main.js"></script>
-
-    <!-- All JS Custom Plugins Link Here here -->
-    <script src="../assets/js/vendor/modernizr-3.5.0.min.js"></script>
-
-    <!-- Jquery, Popper, Bootstrap -->
-    <script src="../assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="../assets/js/popper.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <!-- Jquery Mobile Menu -->
-    <script src="../assets/js/jquery.slicknav.min.js"></script>
-
-    <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="../assets/js/owl.carousel.min.js"></script>
-    <script src="../assets/js/slick.min.js"></script>
-    <!-- Date Picker -->
-    <script src="../assets/js/gijgo.min.js"></script>
-    <!-- One Page, Animated-HeadLin -->
-    <script src="../assets/js/wow.min.js"></script>
-    <script src="../assets/js/animated.headline.js"></script>
-    <script src="../assets/js/jquery.magnific-popup.js"></script>
-
-    <!-- Scrollup, nice-select, sticky -->
-    <script src="../assets/js/jquery.scrollUp.min.js"></script>
-    <script src="../assets/js/jquery.nice-select.min.js"></script>
-    <script src="../assets/js/jquery.sticky.js"></script>
-
-    <!-- contact js -->
-    <script src="../assets/js/contact.js"></script>
-    <script src="../assets/js/jquery.form.js"></script>
-    <script src="../assets/js/jquery.validate.min.js"></script>
-    <script src="../assets/js/mail-script.js"></script>
-    <script src="../assets/js/jquery.ajaxchimp.min.js"></script>
-
-    <!-- Jquery Plugins, main Jquery -->
-    <script src="../assets/js/plugins.js"></script>
-    <script src="../assets/js/main.js"></script>
-
+	<script src="asset/vendor/jquery/jquery.min.js"></script>
+	<script src="asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="asset/js/nexus.js"></script>
 </body>
 
 </html>
-<!-- end document-->
