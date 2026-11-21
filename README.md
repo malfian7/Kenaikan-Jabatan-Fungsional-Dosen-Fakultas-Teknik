@@ -3,6 +3,9 @@ Kenaikan Jabatan Fungsional Dosen Fakultas is a dashboard website that functions
 
 <img width="1919" height="930" alt="image" src="https://github.com/user-attachments/assets/df8649a3-83b3-426e-9d6f-487ff7ed76cc" />
 
+<img width="1919" height="939" alt="image" src="https://github.com/user-attachments/assets/e2385f78-6b87-4a98-b255-778c43f3a986" />
+
+
 # Feature :
 ### Pegawai
 - Mengelola data penilai
