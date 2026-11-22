@@ -41,9 +41,9 @@ if ($rs_penilai->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="penilai_beranda.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Daftar Pengajuan</a>
-				<a href="penilai_tabel_pak.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Tabel Nilai Angka Kredit</a>
+				<a href="penilai_beranda.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Daftar Pengajuan</a>
+				<a href="penilai_tabel_pak.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Tabel Nilai Angka Kredit</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -53,33 +53,33 @@ if ($rs_penilai->recordCount() > 0) {
 				<div class="card">
 					<div class="card-header bg-primary text-light"><b>PROFIL</b></div>
 					<div class="card-body">
-						<a class="btn btn-success" href="penilai_profile_ubah.php?nip_penilai=<?php echo $nip_penilai; ?>">UBAH PROFIL</a>
+						<a class="btn btn-success" href="penilai_profile_ubah.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>">UBAH PROFIL</a>
 						<h1></h1>
 						<div class="table-responsive">
 							<table class="table table-borderless" id="tabelberkas" width="100%" cellspacing="0">
 								<tr>
 									<td width="150">NIDN</td>
-									<td><b><?php echo $nip_penilai; ?></b></td>
+									<td><b><?php echo nx_e($nip_penilai); ?></b></td>
 								</tr>
 								<tr>
 									<td>Nama</td>
-									<td><?php echo $nama_penilai; ?></td>
+									<td><?php echo nx_e($nama_penilai); ?></td>
 								</tr>
 								<tr>
 									<td>Unit Kerja</td>
-									<td><?php echo $unit_kerja_penilai; ?></td>
+									<td><?php echo nx_e($unit_kerja_penilai); ?></td>
 								</tr>
 								<tr>
 									<td>Alamat</td>
-									<td><?php echo $alamat_penilai; ?></td>
+									<td><?php echo nx_e($alamat_penilai); ?></td>
 								</tr>
 								<tr>
 									<td>Telepon</td>
-									<td><?php echo $telepon_penilai; ?></td>
+									<td><?php echo nx_e($telepon_penilai); ?></td>
 								</tr>
 								<tr>
 									<td>Password</td>
-									<td><?php echo $password_penilai; ?></td>
+									<td>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</td>
 								</tr>
 							</table>
 						</div>

@@ -75,9 +75,9 @@ if ($rs_pengajuan->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="penilai_beranda.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-info text-light">Daftar Pengajuan</a>
-				<a href="penilai_tabel_pak.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Tabel Nilai Angka Kredit</a>
+				<a href="penilai_beranda.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-info text-light">Daftar Pengajuan</a>
+				<a href="penilai_tabel_pak.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Tabel Nilai Angka Kredit</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -91,27 +91,27 @@ if ($rs_pengajuan->recordCount() > 0) {
 							<table class="table table-sm table-borderless" width="100%" cellspacing="0">
 								<tr>
 									<td>NIDN Dosen</td>
-									<td><b><?php echo $nip_dosen; ?></b></td>
+									<td><b><?php echo nx_e($nip_dosen); ?></b></td>
 								</tr>
 								<tr>
 									<td>Nama Dosen</td>
-									<td><?php echo $nama_dosen; ?></td>
+									<td><?php echo nx_e($nama_dosen); ?></td>
 								</tr>
 								<tr>
 									<td>Jabatan</td>
-									<td><?php echo $jabatan_asal; ?></td>
+									<td><?php echo nx_e($jabatan_asal); ?></td>
 								</tr>
 								<tr>
 									<td>Jabatan Tujuan</td>
-									<td><?php echo $jabatan_tujuan; ?></td>
+									<td><?php echo nx_e($jabatan_tujuan); ?></td>
 								</tr>
 								<tr>
 									<td>Dokumen Pendukung</td>
-									<td><a target="_blank" href="<?php echo $dokumen_pendukung ?>"><?php echo $dokumen_pendukung ?></a></td>
+									<td><a target="_blank" href="<?php echo nx_e($dokumen_pendukung) ?>"><?php echo nx_e($dokumen_pendukung) ?></a></td>
 								</tr>
 								<tr>
 									<td>Syarat PAK</td>
-									<td><?php echo $syarat_pak; ?></td>
+									<td><?php echo nx_e($syarat_pak); ?></td>
 								</tr>
 							</table>
 						</div>
@@ -151,16 +151,16 @@ if ($rs_pengajuan->recordCount() > 0) {
 										$count++; ?>
 										<tr>
 											<td>
-												<center><?php echo $count; ?></center>
+												<center><?php echo nx_e($count); ?></center>
 											</td>
-											<td><?php echo $value_berkas[1]; ?></td>
-											<td><?php echo $value_berkas[2]; ?></td>
-											<td><a target="_blank" href="<?php echo $value_berkas[3]; ?>">Lihat Berkas</a></td>
+											<td><?php echo nx_e($value_berkas[1]); ?></td>
+											<td><?php echo nx_e($value_berkas[2]); ?></td>
+											<td><a target="_blank" href="<?php echo nx_e($value_berkas[3]); ?>">Lihat Berkas</a></td>
 											<td>
-												<center><?php echo $value_berkas[4]; ?></center>
+												<center><?php echo nx_e($value_berkas[4]); ?></center>
 											</td>
 											<td>
-												<a class="btn btn-sm btn-success" href="penilai_detail_nilai1.php?nip_penilai=<?php echo $nip_penilai; ?>&id_berkas=<?php echo $value_berkas[0]; ?>&id_pengajuan=<?php echo $id_pengajuan; ?>">Detail</a>
+												<a class="btn btn-sm btn-success" href="penilai_detail_nilai1.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>&id_berkas=<?php echo nx_e($value_berkas[0]); ?>&id_pengajuan=<?php echo nx_e($id_pengajuan); ?>">Detail</a>
 											</td>
 										</tr>
 									<?php endforeach; ?>
@@ -174,7 +174,7 @@ if ($rs_pengajuan->recordCount() > 0) {
 										<p><b>Total PAK</b></p>
 									</td>
 									<td width="80">
-										<p><b><?php echo $total_poin; ?></b></p>
+										<p><b><?php echo nx_e($total_poin); ?></b></p>
 									</td>
 									<td width="90"></td>
 								</tr>

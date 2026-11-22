@@ -41,9 +41,9 @@ if ($rs_penilai->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="penilai_beranda.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Daftar Pengajuan</a>
-				<a href="penilai_tabel_pak.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Tabel Nilai Angka Kredit</a>
+				<a href="penilai_beranda.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Daftar Pengajuan</a>
+				<a href="penilai_tabel_pak.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Tabel Nilai Angka Kredit</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -55,12 +55,12 @@ if ($rs_penilai->recordCount() > 0) {
 					<div class="card-body">
 						<div class="table-responsive">
 							<table class="table table-borderless" id="tabelberkas" width="100%" cellspacing="0">
-								<form action="penilai_profile_ubah_code.php?nip_penilai=<?php echo $nip_penilai; ?>" method="POST">
+								<form action="penilai_profile_ubah_code.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" method="POST">
 									<tr>
 										<td width="150">NIDN</td>
 										<td>
 											<div class="col-sm-3">
-												<input type="text" name="nip_penilai" value="<?php echo $nip_penilai; ?>" readonly="readonly" class="form-control">
+												<input type="text" name="nip_penilai" value="<?php echo nx_e($nip_penilai); ?>" readonly="readonly" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -68,7 +68,7 @@ if ($rs_penilai->recordCount() > 0) {
 										<td>Nama</td>
 										<td>
 											<div class="col-sm-8">
-												<input type="text" name="nama_penilai" value="<?php echo $nama_penilai; ?>" class="form-control">
+												<input type="text" name="nama_penilai" value="<?php echo nx_e($nama_penilai); ?>" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -76,7 +76,7 @@ if ($rs_penilai->recordCount() > 0) {
 										<td>Unit Kerja</td>
 										<td>
 											<div class="col-sm-8">
-												<input type="text" name="unit_kerja_penilai" value="<?php echo $unit_kerja_penilai; ?>" class="form-control">
+												<input type="text" name="unit_kerja_penilai" value="<?php echo nx_e($unit_kerja_penilai); ?>" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -84,7 +84,7 @@ if ($rs_penilai->recordCount() > 0) {
 										<td>Rumpun Ilmu</td>
 										<td>
 											<div class="col-sm-8">
-												<input type="text" name="rumpun_ilmu" value="<?php echo $rumpun_ilmu; ?>" class="form-control">
+												<input type="text" name="rumpun_ilmu" value="<?php echo nx_e($rumpun_ilmu); ?>" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -92,7 +92,7 @@ if ($rs_penilai->recordCount() > 0) {
 										<td>Alamat</td>
 										<td>
 											<div class="col-sm-8">
-												<input type="text" name="alamat_penilai" value="<?php echo $alamat_penilai; ?>" class="form-control">
+												<input type="text" name="alamat_penilai" value="<?php echo nx_e($alamat_penilai); ?>" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -100,7 +100,7 @@ if ($rs_penilai->recordCount() > 0) {
 										<td>Telepon</td>
 										<td>
 											<div class="col-sm-3">
-												<input type="text" name="telepon_penilai" value="<?php echo $telepon_penilai; ?>" class="form-control">
+												<input type="text" name="telepon_penilai" value="<?php echo nx_e($telepon_penilai); ?>" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -108,7 +108,7 @@ if ($rs_penilai->recordCount() > 0) {
 										<td>Password</td>
 										<td>
 											<div class="col-sm-3">
-												<input type="text" name="password_penilai" value="<?php echo $password_penilai; ?>" class="form-control">
+												<input type="password" name="password_penilai" value="" class="form-control" minlength="6" autocomplete="new-password" placeholder="Kosongkan jika tidak ingin mengganti">
 											</div>
 										</td>
 									</tr>

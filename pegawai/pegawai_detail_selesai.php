@@ -31,6 +31,7 @@ if ($rs_poin->recordCount() > 0) {
 	}
 }
 
+$total_poin = isset($total_poin) && is_numeric($total_poin) ? (float) $total_poin : 0;
 $update_poin = "UPDATE pengajuan SET total_pak_akhir = '$total_poin' WHERE id_pengajuan = $id_pengajuan;";
 $koneksi->Execute($update_poin);
 
@@ -80,9 +81,9 @@ if ($rs_pengajuan->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="pegawai_beranda.php?nip_pegawai=<?php echo $nip_pegawai ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo $nip_pegawai; ?>" class="list-group-item list-group-item-action bg-light">Data Penilai</a>
-				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo $nip_pegawai; ?>" class="list-group-item list-group-item-action bg-info text-light">Data Pengajuan</a>
+				<a href="pegawai_beranda.php?nip_pegawai=<?php echo nx_e($nip_pegawai) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Data Penilai</a>
+				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-info text-light">Data Pengajuan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -96,39 +97,39 @@ if ($rs_pengajuan->recordCount() > 0) {
 							<table class="table table-sm table-borderless" width="100%" cellspacing="0">
 								<tr>
 									<td>Tanggal Pengajuan</td>
-									<td><?php echo $tanggal_pengajuan; ?></td>
+									<td><?php echo nx_e($tanggal_pengajuan); ?></td>
 								</tr>
 								<tr>
 									<td>NIDN Dosen</td>
-									<td><?php echo $nip_dosen; ?></td>
+									<td><?php echo nx_e($nip_dosen); ?></td>
 								</tr>
 								<tr>
 									<td>Nama Dosen</td>
-									<td><?php echo $nama_dosen; ?></td>
+									<td><?php echo nx_e($nama_dosen); ?></td>
 								</tr>
 								<tr>
 									<td>Jabatan</td>
-									<td><?php echo $jabatan_asal; ?></td>
+									<td><?php echo nx_e($jabatan_asal); ?></td>
 								</tr>
 								<tr>
 									<td>Tanggal SK</td>
-									<td><?php echo $tanggal_sk; ?></td>
+									<td><?php echo nx_e($tanggal_sk); ?></td>
 								</tr>
 								<tr>
 									<td>Jabatan Tujuan</td>
-									<td><?php echo $jabatan_tujuan; ?></td>
+									<td><?php echo nx_e($jabatan_tujuan); ?></td>
 								</tr>
 								<tr>
 									<td>Dokumen Pendukung</td>
-									<td><a target="_blank" href="<?php echo $dokumen_pendukung ?>"><?php echo $dokumen_pendukung ?></a></td>
+									<td><a target="_blank" href="<?php echo nx_e($dokumen_pendukung) ?>"><?php echo nx_e($dokumen_pendukung) ?></a></td>
 								</tr>
 								<tr>
 									<td>Syarat PAK</td>
-									<td><?php echo $syarat_pak; ?></td>
+									<td><?php echo nx_e($syarat_pak); ?></td>
 								</tr>
 								<tr>
 									<td>Total PAK</td>
-									<td><?php echo $total_pak_akhir; ?></td>
+									<td><?php echo nx_e($total_pak_akhir); ?></td>
 								</tr>
 							</table>
 						</div>
@@ -138,7 +139,7 @@ if ($rs_pengajuan->recordCount() > 0) {
 				<div class="card">
 					<div class="card-header bg-primary text-light"><b>FILE SK KENAIKAN JABATAN</b></div>
 					<div class="card-body">
-						<a target="_blank" href="<?php echo $file_sk; ?>"><?php echo $file_sk; ?></a>
+						<a target="_blank" href="<?php echo nx_e($file_sk); ?>"><?php echo nx_e($file_sk); ?></a>
 					</div>
 				</div>
 				<h1></h1>
@@ -181,22 +182,22 @@ if ($rs_pengajuan->recordCount() > 0) {
 										$count++; ?>
 										<tr>
 											<td>
-												<center><?php echo $count; ?></center>
+												<center><?php echo nx_e($count); ?></center>
 											</td>
-											<td><?php echo $value_berkas[1]; ?></td>
-											<td><?php echo $value_berkas[2]; ?></td>
-											<td><a target="_blank" href="<?php echo $value_berkas[3]; ?>">Lihat Berkas</a></td>
+											<td><?php echo nx_e($value_berkas[1]); ?></td>
+											<td><?php echo nx_e($value_berkas[2]); ?></td>
+											<td><a target="_blank" href="<?php echo nx_e($value_berkas[3]); ?>">Lihat Berkas</a></td>
 											<td>
-												<center><?php echo $value_berkas[4]; ?></center>
-											</td>
-											<td>
-												<center><?php echo $value_berkas[5]; ?></center>
+												<center><?php echo nx_e($value_berkas[4]); ?></center>
 											</td>
 											<td>
-												<center><?php echo $value_berkas[6]; ?></center>
+												<center><?php echo nx_e($value_berkas[5]); ?></center>
 											</td>
 											<td>
-												<center><?php echo $value_berkas[7]; ?></center>
+												<center><?php echo nx_e($value_berkas[6]); ?></center>
+											</td>
+											<td>
+												<center><?php echo nx_e($value_berkas[7]); ?></center>
 											</td>
 										</tr>
 									<?php endforeach; ?>

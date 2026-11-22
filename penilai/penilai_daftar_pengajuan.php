@@ -56,9 +56,9 @@ if ($rs_pengajuan2->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="penilai_beranda.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-info text-light">Daftar Pengajuan</a>
-				<a href="penilai_tabel_pak.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Tabel Nilai Angka Kredit</a>
+				<a href="penilai_beranda.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-info text-light">Daftar Pengajuan</a>
+				<a href="penilai_tabel_pak.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Tabel Nilai Angka Kredit</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -70,10 +70,10 @@ if ($rs_pengajuan2->recordCount() > 0) {
 					<div class="card-body">
 						<ul class="nav nav-tabs">
 							<li class="nav-item">
-								<a class="nav-link active" href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo $nip_penilai; ?>"><b>BELUM DINILAI</b></a>
+								<a class="nav-link active" href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>"><b>BELUM DINILAI</b></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="penilai_daftar_pengajuan_selesai.php?nip_penilai=<?php echo $nip_penilai; ?>">TELAH DINILAI</a>
+								<a class="nav-link" href="penilai_daftar_pengajuan_selesai.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>">TELAH DINILAI</a>
 							</li>
 						</ul>
 						<h1></h1>
@@ -109,16 +109,16 @@ if ($rs_pengajuan2->recordCount() > 0) {
 									<?php foreach ($data_pengajuan1 as $value_pengajuan1) : ?>
 										<tr>
 											<td>
-												<center><?php echo $value_pengajuan1[0] ?></center>
+												<center><?php echo nx_e($value_pengajuan1[0]) ?></center>
 											</td>
-											<td><?php echo $value_pengajuan1[1] ?></td>
-											<td><?php echo $value_pengajuan1[2] ?></td>
-											<td><?php echo $value_pengajuan1[3] ?></td>
-											<td><?php echo $value_pengajuan1[4] ?></td>
+											<td><?php echo nx_e($value_pengajuan1[1]) ?></td>
+											<td><?php echo nx_e($value_pengajuan1[2]) ?></td>
+											<td><?php echo nx_e($value_pengajuan1[3]) ?></td>
+											<td><?php echo nx_e($value_pengajuan1[4]) ?></td>
 											<td>
-												<center><?php echo $value_pengajuan1[5] ?></center>
+												<center><?php echo nx_e($value_pengajuan1[5]) ?></center>
 											</td>
-											<td><a class="btn btn-sm btn-primary" href="penilai_data_berkas_penilai1.php?nip_penilai=<?php echo $nip_penilai; ?>&id_pengajuan=<?php echo $value_pengajuan1[0] ?>">Lihat Berkas</a>
+											<td><a class="btn btn-sm btn-primary" href="penilai_data_berkas_penilai1.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>&id_pengajuan=<?php echo nx_e($value_pengajuan1[0]) ?>">Lihat Berkas</a>
 											</td>
 										</tr>
 									<?php endforeach; ?>
@@ -158,16 +158,16 @@ if ($rs_pengajuan2->recordCount() > 0) {
 									<?php foreach ($data_pengajuan2 as $value_pengajuan2) : ?>
 										<tr>
 											<td>
-												<center><?php echo $value_pengajuan2[0] ?></center>
+												<center><?php echo nx_e($value_pengajuan2[0]) ?></center>
 											</td>
-											<td><?php echo $value_pengajuan2[1] ?></td>
-											<td><?php echo $value_pengajuan2[2] ?></td>
-											<td><?php echo $value_pengajuan2[3] ?></td>
-											<td><?php echo $value_pengajuan2[4] ?></td>
+											<td><?php echo nx_e($value_pengajuan2[1]) ?></td>
+											<td><?php echo nx_e($value_pengajuan2[2]) ?></td>
+											<td><?php echo nx_e($value_pengajuan2[3]) ?></td>
+											<td><?php echo nx_e($value_pengajuan2[4]) ?></td>
 											<td>
-												<center><?php echo $value_pengajuan2[5] ?></center>
+												<center><?php echo nx_e($value_pengajuan2[5]) ?></center>
 											</td>
-											<td><a class="btn btn-sm btn-primary" href="penilai_data_berkas_penilai2.php?nip_penilai=<?php echo $nip_penilai; ?>&id_pengajuan=<?php echo $value_pengajuan2[0] ?>">Lihat Berkas</a>
+											<td><a class="btn btn-sm btn-primary" href="penilai_data_berkas_penilai2.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>&id_pengajuan=<?php echo nx_e($value_pengajuan2[0]) ?>">Lihat Berkas</a>
 											</td>
 										</tr>
 									<?php endforeach; ?>

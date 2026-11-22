@@ -53,19 +53,19 @@ if ($rs_pengajuan->recordCount() > 0) {
 					<div class="card-body">
 						<ul class="nav nav-tabs">
 							<li class="nav-item">
-								<a class="nav-link" href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo $nip_pegawai; ?>">BELUM DIPERIKSA</a>
+								<a class="nav-link" href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>">BELUM DIPERIKSA</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="pegawai_data_pengajuan_berkas_ditolak.php?nip_pegawai=<?php echo $nip_pegawai; ?>">BERKAS DITOLAK</a>
+								<a class="nav-link" href="pegawai_data_pengajuan_berkas_ditolak.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>">BERKAS DITOLAK</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link active" href="pegawai_data_pengajuan_telah_revisi.php?nip_pegawai=<?php echo $nip_pegawai; ?>"><b>TELAH DIREVISI</b></a>
+								<a class="nav-link active" href="pegawai_data_pengajuan_telah_revisi.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>"><b>TELAH DIREVISI</b></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="pegawai_data_pengajuan_berkas_diterima.php?nip_pegawai=<?php echo $nip_pegawai; ?>">BERKAS DITERIMA</a>
+								<a class="nav-link" href="pegawai_data_pengajuan_berkas_diterima.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>">BERKAS DITERIMA</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="pegawai_data_pengajuan_penilaian.php?nip_pegawai=<?php echo $nip_pegawai; ?>">TELAH DINILAI</a>
+								<a class="nav-link" href="pegawai_data_pengajuan_penilaian.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>">TELAH DINILAI</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="#">SELESAI</a>
@@ -103,17 +103,17 @@ if ($rs_pengajuan->recordCount() > 0) {
 									<?php foreach ($data_pengajuan as $value_pengajuan) : ?>
 										<tr>
 											<td>
-												<center><?php echo $value_pengajuan[0]; ?></center>
+												<center><?php echo nx_e($value_pengajuan[0]); ?></center>
 											</td>
-											<td><?php echo $value_pengajuan[1]; ?></td>
-											<td><?php echo $value_pengajuan[2]; ?></td>
-											<td><?php echo $value_pengajuan[3]; ?></td>
-											<td><?php echo $value_pengajuan[4]; ?></td>
+											<td><?php echo nx_e($value_pengajuan[1]); ?></td>
+											<td><?php echo nx_e($value_pengajuan[2]); ?></td>
+											<td><?php echo nx_e($value_pengajuan[3]); ?></td>
+											<td><?php echo nx_e($value_pengajuan[4]); ?></td>
 											<td>
-												<center><?php echo $value_pengajuan[5]; ?></center>
+												<center><?php echo nx_e($value_pengajuan[5]); ?></center>
 											</td>
 											<td>
-												<a class="btn btn-sm btn-success" href="pegawai_pengajuan_periksa.php?nip_pegawai=<?php echo $nip_pegawai; ?>&id_pengajuan=<?php echo $value_pengajuan[0]; ?>">PERIKSA REVISI</a>
+												<a class="btn btn-sm btn-success" href="pegawai_pengajuan_periksa.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>&id_pengajuan=<?php echo nx_e($value_pengajuan[0]); ?>">PERIKSA REVISI</a>
 											</td>
 										</tr>
 									<?php endforeach; ?>

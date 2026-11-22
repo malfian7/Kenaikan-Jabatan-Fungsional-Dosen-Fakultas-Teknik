@@ -150,9 +150,9 @@ if (is_null($total_penunjang)) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="pegawai_beranda.php?nip_pegawai=<?php echo $nip_pegawai ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo $nip_pegawai; ?>" class="list-group-item list-group-item-action bg-light">Data Penilai</a>
-				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo $nip_pegawai; ?>" class="list-group-item list-group-item-action bg-info text-light">Data Pengajuan</a>
+				<a href="pegawai_beranda.php?nip_pegawai=<?php echo nx_e($nip_pegawai) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Data Penilai</a>
+				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-info text-light">Data Pengajuan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -166,39 +166,39 @@ if (is_null($total_penunjang)) {
 							<table class="table table-sm table-borderless" width="100%" cellspacing="0">
 								<tr>
 									<td>Tanggal Pengajuan</td>
-									<td><?php echo $tanggal_pengajuan; ?></td>
+									<td><?php echo nx_e($tanggal_pengajuan); ?></td>
 								</tr>
 								<tr>
 									<td>NIDN Dosen</td>
-									<td><b><?php echo $nip_dosen; ?></b></td>
+									<td><b><?php echo nx_e($nip_dosen); ?></b></td>
 								</tr>
 								<tr>
 									<td>Nama Dosen</td>
-									<td><?php echo $nama_dosen; ?></td>
+									<td><?php echo nx_e($nama_dosen); ?></td>
 								</tr>
 								<tr>
 									<td>Jabatan</td>
-									<td><?php echo $jabatan_asal; ?></td>
+									<td><?php echo nx_e($jabatan_asal); ?></td>
 								</tr>
 								<tr>
 									<td>Tanggal SK</td>
-									<td><?php echo $tanggal_sk; ?></td>
+									<td><?php echo nx_e($tanggal_sk); ?></td>
 								</tr>
 								<tr>
 									<td>Jabatan Tujuan</td>
-									<td><?php echo $jabatan_tujuan; ?></td>
+									<td><?php echo nx_e($jabatan_tujuan); ?></td>
 								</tr>
 								<tr>
 									<td>Dokumen Pendukung</td>
-									<td><a target="_blank" href="<?php echo $dokumen_pendukung ?>"><?php echo $dokumen_pendukung ?></a></td>
+									<td><a target="_blank" href="<?php echo nx_e($dokumen_pendukung) ?>"><?php echo nx_e($dokumen_pendukung) ?></a></td>
 								</tr>
 								<tr>
 									<td>Syarat PAK</td>
-									<td><b><?php echo $syarat_pak; ?></b></td>
+									<td><b><?php echo nx_e($syarat_pak); ?></b></td>
 								</tr>
 								<tr>
 									<td>Total PAK Akhir</td>
-									<td><b><?php echo $total_pak_akhir; ?></b></td>
+									<td><b><?php echo nx_e($total_pak_akhir); ?></b></td>
 								</tr>
 							</table>
 						</div>
@@ -243,21 +243,21 @@ if (is_null($total_penunjang)) {
 										$count++; ?>
 										<tr>
 											<td>
-												<center><?php echo $count; ?></center>
+												<center><?php echo nx_e($count); ?></center>
 											</td>
-											<td><?php echo $value_berkas[2]; ?></td>
-											<td><a target="_blank" href="<?php echo $value_berkas[3]; ?>">Lihat Berkas</a></td>
+											<td><?php echo nx_e($value_berkas[2]); ?></td>
+											<td><a target="_blank" href="<?php echo nx_e($value_berkas[3]); ?>">Lihat Berkas</a></td>
 											<td>
-												<center><?php echo $value_berkas[4]; ?></center>
-											</td>
-											<td>
-												<center><?php echo $value_berkas[5]; ?></center>
+												<center><?php echo nx_e($value_berkas[4]); ?></center>
 											</td>
 											<td>
-												<center><?php echo $value_berkas[6]; ?></center>
+												<center><?php echo nx_e($value_berkas[5]); ?></center>
 											</td>
 											<td>
-												<center><?php echo $value_berkas[7]; ?></center>
+												<center><?php echo nx_e($value_berkas[6]); ?></center>
+											</td>
+											<td>
+												<center><?php echo nx_e($value_berkas[7]); ?></center>
 											</td>
 										</tr>
 									<?php endforeach; ?>
@@ -272,7 +272,7 @@ if (is_null($total_penunjang)) {
 									</td>
 									<td width="95">
 										<p><b>
-												<center><?php echo $total_pendidikan; ?></center>
+												<center><?php echo nx_e($total_pendidikan); ?></center>
 											</b></p>
 									</td>
 								</tr>
@@ -282,7 +282,7 @@ if (is_null($total_penunjang)) {
 									</td>
 									<td width="95">
 										<p><b>
-												<center><?php echo $pendidikan; ?></center>
+												<center><?php echo nx_e($pendidikan); ?></center>
 											</b></p>
 									</td>
 								</tr>
@@ -324,21 +324,21 @@ if (is_null($total_penunjang)) {
 										$count++; ?>
 										<tr>
 											<td>
-												<center><?php echo $count; ?></center>
+												<center><?php echo nx_e($count); ?></center>
 											</td>
-											<td><?php echo $value_berkas_1[2]; ?></td>
-											<td><a target="_blank" href="<?php echo $value_berkas_1[3]; ?>">Lihat Berkas</a></td>
+											<td><?php echo nx_e($value_berkas_1[2]); ?></td>
+											<td><a target="_blank" href="<?php echo nx_e($value_berkas_1[3]); ?>">Lihat Berkas</a></td>
 											<td>
-												<center><?php echo $value_berkas_1[4]; ?></center>
-											</td>
-											<td>
-												<center><?php echo $value_berkas_1[5]; ?></center>
+												<center><?php echo nx_e($value_berkas_1[4]); ?></center>
 											</td>
 											<td>
-												<center><?php echo $value_berkas_1[6]; ?></center>
+												<center><?php echo nx_e($value_berkas_1[5]); ?></center>
 											</td>
 											<td>
-												<center><?php echo $value_berkas_1[7]; ?></center>
+												<center><?php echo nx_e($value_berkas_1[6]); ?></center>
+											</td>
+											<td>
+												<center><?php echo nx_e($value_berkas_1[7]); ?></center>
 											</td>
 										</tr>
 									<?php endforeach; ?>
@@ -353,7 +353,7 @@ if (is_null($total_penunjang)) {
 									</td>
 									<td width="95">
 										<p><b>
-												<center><?php echo $total_penelitian; ?></center>
+												<center><?php echo nx_e($total_penelitian); ?></center>
 											</b></p>
 									</td>
 								</tr>
@@ -363,7 +363,7 @@ if (is_null($total_penunjang)) {
 									</td>
 									<td width="95">
 										<p><b>
-												<center><?php echo $penelitian; ?></center>
+												<center><?php echo nx_e($penelitian); ?></center>
 											</b></p>
 									</td>
 								</tr>
@@ -405,21 +405,21 @@ if (is_null($total_penunjang)) {
 										$count++; ?>
 										<tr>
 											<td>
-												<center><?php echo $count; ?></center>
+												<center><?php echo nx_e($count); ?></center>
 											</td>
-											<td><?php echo $value_berkas_2[2]; ?></td>
-											<td><a target="_blank" href="<?php echo $value_berkas_2[3]; ?>">Lihat Berkas</a></td>
+											<td><?php echo nx_e($value_berkas_2[2]); ?></td>
+											<td><a target="_blank" href="<?php echo nx_e($value_berkas_2[3]); ?>">Lihat Berkas</a></td>
 											<td>
-												<center><?php echo $value_berkas_2[4]; ?></center>
-											</td>
-											<td>
-												<center><?php echo $value_berkas_2[5]; ?></center>
+												<center><?php echo nx_e($value_berkas_2[4]); ?></center>
 											</td>
 											<td>
-												<center><?php echo $value_berkas_2[6]; ?></center>
+												<center><?php echo nx_e($value_berkas_2[5]); ?></center>
 											</td>
 											<td>
-												<center><?php echo $value_berkas_2[7]; ?></center>
+												<center><?php echo nx_e($value_berkas_2[6]); ?></center>
+											</td>
+											<td>
+												<center><?php echo nx_e($value_berkas_2[7]); ?></center>
 											</td>
 										</tr>
 									<?php endforeach; ?>
@@ -434,7 +434,7 @@ if (is_null($total_penunjang)) {
 									</td>
 									<td width="95">
 										<p><b>
-												<center><?php echo $total_pengabdian; ?></center>
+												<center><?php echo nx_e($total_pengabdian); ?></center>
 											</b></p>
 									</td>
 								</tr>
@@ -444,7 +444,7 @@ if (is_null($total_penunjang)) {
 									</td>
 									<td width="95">
 										<p><b>
-												<center><?php echo $pengabdian; ?></center>
+												<center><?php echo nx_e($pengabdian); ?></center>
 											</b></p>
 									</td>
 								</tr>
@@ -486,21 +486,21 @@ if (is_null($total_penunjang)) {
 										$count++; ?>
 										<tr>
 											<td>
-												<center><?php echo $count; ?></center>
+												<center><?php echo nx_e($count); ?></center>
 											</td>
-											<td><?php echo $value_berkas_3[2]; ?></td>
-											<td><a target="_blank" href="<?php echo $value_berkas_3[3]; ?>">Lihat Berkas</a></td>
+											<td><?php echo nx_e($value_berkas_3[2]); ?></td>
+											<td><a target="_blank" href="<?php echo nx_e($value_berkas_3[3]); ?>">Lihat Berkas</a></td>
 											<td>
-												<center><?php echo $value_berkas_3[4]; ?></center>
-											</td>
-											<td>
-												<center><?php echo $value_berkas_3[5]; ?></center>
+												<center><?php echo nx_e($value_berkas_3[4]); ?></center>
 											</td>
 											<td>
-												<center><?php echo $value_berkas_3[6]; ?></center>
+												<center><?php echo nx_e($value_berkas_3[5]); ?></center>
 											</td>
 											<td>
-												<center><?php echo $value_berkas_3[7]; ?></center>
+												<center><?php echo nx_e($value_berkas_3[6]); ?></center>
+											</td>
+											<td>
+												<center><?php echo nx_e($value_berkas_3[7]); ?></center>
 											</td>
 										</tr>
 									<?php endforeach; ?>
@@ -515,7 +515,7 @@ if (is_null($total_penunjang)) {
 									</td>
 									<td width="95">
 										<p><b>
-												<center><?php echo $total_penunjang; ?></center>
+												<center><?php echo nx_e($total_penunjang); ?></center>
 											</b></p>
 									</td>
 								</tr>
@@ -525,7 +525,7 @@ if (is_null($total_penunjang)) {
 									</td>
 									<td width="95">
 										<p><b>
-												<center><?php echo $penunjang; ?></center>
+												<center><?php echo nx_e($penunjang); ?></center>
 											</b></p>
 									</td>
 								</tr>
@@ -538,7 +538,7 @@ if (is_null($total_penunjang)) {
 						<tr>
 							<td width="700"></td>
 							<td width="380">
-								<a href="pegawai_persetujuan_tolak_code.php?nip_pegawai=<?php echo $nip_pegawai ?>&id_pengajuan=<?php echo $id_pengajuan; ?>" class="btn btn-danger">TOLAK PENGAJUAN</a>
+								<form action="pegawai_persetujuan_tolak_code.php?nip_pegawai=<?php echo nx_e($nip_pegawai) ?>&id_pengajuan=<?php echo nx_e($id_pengajuan); ?>" method="post" class="nx-inline-form"><button type="submit" class="btn btn-danger" data-confirm-title="Tolak pengajuan ini?" data-confirm-text="Dosen akan melihat status pengajuannya sebagai ditolak." data-confirm-label="Tolak pengajuan" data-confirm-tone="danger">TOLAK PENGAJUAN</button></form>
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 									TERIMA PENGAJUAN
 								</button>
@@ -551,7 +551,7 @@ if (is_null($total_penunjang)) {
 												<b>UPLOAD SK JABATAN</b>
 											</div>
 											<div class="modal-body">
-												<form action="pegawai_persetujuan_terima_code.php?nip_pegawai=<?php echo $nip_pegawai; ?>&id_pengajuan=<?php echo $id_pengajuan; ?>" method="POST">
+												<form action="pegawai_persetujuan_terima_code.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>&id_pengajuan=<?php echo nx_e($id_pengajuan); ?>" method="POST">
 													<div class="form-group">
 														<div class="col-sm-12">
 															<textarea rows="3" class="form-control" name="file_sk" placeholder="Masukkan link google drive" required="required"></textarea>

@@ -46,9 +46,9 @@ if ($rs_penilai->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="pegawai_beranda.php?nip_pegawai=<?php echo $nip_pegawai ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo $nip_pegawai; ?>" class="list-group-item list-group-item-action bg-info text-light">Data Penilai</a>
-				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo $nip_pegawai; ?>" class="list-group-item list-group-item-action bg-light">Data Pengajuan</a>
+				<a href="pegawai_beranda.php?nip_pegawai=<?php echo nx_e($nip_pegawai) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-info text-light">Data Penilai</a>
+				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Data Pengajuan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -58,7 +58,7 @@ if ($rs_penilai->recordCount() > 0) {
 				<div class="card">
 					<div class="card-header bg-primary text-light"><b>DATA PENILAI</b></div>
 					<div class="card-body">
-						<a class="btn btn-success" href="pegawai_data_penilai_input.php?nip_pegawai=<?php echo $nip_pegawai; ?>">TAMBAH PENILAI</a>
+						<a class="btn btn-success" href="pegawai_data_penilai_input.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>">TAMBAH PENILAI</a>
 						<h1></h1>
 						<div class="table-responsive">
 							<table class="table table-bordered" id="example" class="display width=" 100%" cellspacing="0">
@@ -77,16 +77,16 @@ if ($rs_penilai->recordCount() > 0) {
 								<tbody>
 									<?php foreach ($data_penilai as $value_penilai) : ?>
 										<tr>
-											<td><?php echo $value_penilai[0]; ?></td>
-											<td><?php echo $value_penilai[1]; ?></td>
-											<td><?php echo $value_penilai[2]; ?></td>
-											<td><?php echo $value_penilai[3]; ?></td>
-											<td><?php echo $value_penilai[4]; ?></td>
-											<td><?php echo $value_penilai[5]; ?></td>
-											<td><?php echo $value_penilai[6]; ?></td>
+											<td><?php echo nx_e($value_penilai[0]); ?></td>
+											<td><?php echo nx_e($value_penilai[1]); ?></td>
+											<td><?php echo nx_e($value_penilai[2]); ?></td>
+											<td><?php echo nx_e($value_penilai[3]); ?></td>
+											<td><?php echo nx_e($value_penilai[4]); ?></td>
+											<td><?php echo nx_e($value_penilai[5]); ?></td>
+											<td><?php echo nx_e($value_penilai[6]); ?></td>
 											<td>
-												<a class="btn btn-sm btn-info" href="pegawai_data_penilai_edit.php?nip_pegawai=<?php echo $nip_pegawai; ?>&nip_penilai=<?php echo $value_penilai[0]; ?>">Edit</a>
-												<a class="btn btn-sm btn-danger" href="pegawai_data_penilai_hapus_code.php?nip_pegawai=<?php echo $nip_pegawai; ?>&nip_penilai=<?php echo $value_penilai[0]; ?>">Hapus</a>
+												<a class="btn btn-sm btn-info" href="pegawai_data_penilai_edit.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>&nip_penilai=<?php echo nx_e($value_penilai[0]); ?>">Edit</a>
+												<form action="pegawai_data_penilai_hapus_code.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>&nip_penilai=<?php echo nx_e($value_penilai[0]); ?>" method="post" class="nx-inline-form"><button type="submit" class="btn btn-sm btn-danger" data-confirm-title="Hapus penilai ini?" data-confirm-text="Akun penilai akan dihapus dan tidak bisa dikembalikan." data-confirm-label="Hapus" data-confirm-tone="danger">Hapus</button></form>
 											</td>
 										</tr>
 									<?php endforeach; ?>

@@ -109,14 +109,14 @@ if ($rs_penilai->recordCount() > 0) {
 													<tbody>
 														<?php foreach ($data_penilai as $value_penilai) : ?>
 															<tr>
-																<td><?php echo $value_penilai[0]; ?></td>
-																<td><?php echo $value_penilai[2]; ?></td>
-																<td><?php echo $value_penilai[3]; ?></td>
-																<td><?php echo $value_penilai[4]; ?></td>
-																<td><?php echo $value_penilai[5]; ?></td>
-																<td><?php echo $value_penilai[6]; ?></td>
+																<td><?php echo nx_e($value_penilai[0]); ?></td>
+																<td><?php echo nx_e($value_penilai[2]); ?></td>
+																<td><?php echo nx_e($value_penilai[3]); ?></td>
+																<td><?php echo nx_e($value_penilai[4]); ?></td>
+																<td><?php echo nx_e($value_penilai[5]); ?></td>
+																<td><?php echo nx_e($value_penilai[6]); ?></td>
 																<td>
-																	<a class="btn btn-sm btn-primary" href="pegawai_penilai_input1_code.php?nip_pegawai=<?php echo $nip_pegawai ?>&id_pengajuan=<?php echo $id_pengajuan ?>&nip_penilai=<?php echo $value_penilai[0]; ?>">Pilih</a>
+																	<form action="pegawai_penilai_input1_code.php?nip_pegawai=<?php echo nx_e($nip_pegawai) ?>&id_pengajuan=<?php echo nx_e($id_pengajuan) ?>&nip_penilai=<?php echo nx_e($value_penilai[0]); ?>" method="post" class="nx-inline-form"><button type="submit" class="btn btn-sm btn-primary">Pilih</button></form>
 																</td>
 															</tr>
 														<?php endforeach; ?>
@@ -132,25 +132,25 @@ if ($rs_penilai->recordCount() > 0) {
 							<div class="form-group">
 								<label class="control-label col-sm-12">NIP Penilai 1</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" name="nip_penilai_1" placeholder="Pilih Penilai 1" readonly="readonly" value="<?php echo $nip_penilai_1 ?>">
+									<input type="text" class="form-control" name="nip_penilai_1" placeholder="Pilih Penilai 1" readonly="readonly" value="<?php echo nx_e($nip_penilai_1) ?>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-12">Nama Penilai 1</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" name="nama_penilai_1" placeholder="Pilih Penilai 1" readonly="readonly" value="<?php echo $nama_penilai_1; ?>">
+									<input type="text" class="form-control" name="nama_penilai_1" placeholder="Pilih Penilai 1" readonly="readonly" value="<?php echo nx_e($nama_penilai_1); ?>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-12">Unit Kerja Penilai 1</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" name="unit_kerja_penilai_1" readonly="readonly" placeholder="Pilih Penilai 1" value="<?php echo $unit_kerja_penilai_1; ?>">
+									<input type="text" class="form-control" name="unit_kerja_penilai_1" readonly="readonly" placeholder="Pilih Penilai 1" value="<?php echo nx_e($unit_kerja_penilai_1); ?>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-12">Rumpun Ilmu Penilai 1</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" name="rumpun_ilmu_penilai_1" placeholder="Pilih Penilai 1" readonly="readonly" value="<?php echo $rumpun_ilmu_penilai_1; ?>">
+									<input type="text" class="form-control" name="rumpun_ilmu_penilai_1" placeholder="Pilih Penilai 1" readonly="readonly" value="<?php echo nx_e($rumpun_ilmu_penilai_1); ?>">
 								</div>
 							</div>
 						</form>
@@ -182,14 +182,14 @@ if ($rs_penilai->recordCount() > 0) {
 													<tbody>
 														<?php foreach ($data_penilai as $value_penilai) : ?>
 															<tr>
-																<td><?php echo $value_penilai[0]; ?></td>
-																<td><?php echo $value_penilai[2]; ?></td>
-																<td><?php echo $value_penilai[3]; ?></td>
-																<td><?php echo $value_penilai[4]; ?></td>
-																<td><?php echo $value_penilai[5]; ?></td>
-																<td><?php echo $value_penilai[6]; ?></td>
+																<td><?php echo nx_e($value_penilai[0]); ?></td>
+																<td><?php echo nx_e($value_penilai[2]); ?></td>
+																<td><?php echo nx_e($value_penilai[3]); ?></td>
+																<td><?php echo nx_e($value_penilai[4]); ?></td>
+																<td><?php echo nx_e($value_penilai[5]); ?></td>
+																<td><?php echo nx_e($value_penilai[6]); ?></td>
 																<td>
-																	<a class="btn btn-sm btn-primary" href="pegawai_penilai_input2_code.php?nip_pegawai=<?php echo $nip_pegawai ?>&id_pengajuan=<?php echo $id_pengajuan ?>&nip_penilai=<?php echo $value_penilai[0]; ?>">Pilih</a>
+																	<form action="pegawai_penilai_input2_code.php?nip_pegawai=<?php echo nx_e($nip_pegawai) ?>&id_pengajuan=<?php echo nx_e($id_pengajuan) ?>&nip_penilai=<?php echo nx_e($value_penilai[0]); ?>" method="post" class="nx-inline-form"><button type="submit" class="btn btn-sm btn-primary">Pilih</button></form>
 																</td>
 															</tr>
 														<?php endforeach; ?>
@@ -205,29 +205,29 @@ if ($rs_penilai->recordCount() > 0) {
 							<div class="form-group">
 								<label class="control-label col-sm-12">NIP Penilai 2</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" name="nip_penilai_2" placeholder="Pilih Penilai 2" readonly="readonly" value="<?php echo $nip_penilai_2; ?>">
+									<input type="text" class="form-control" name="nip_penilai_2" placeholder="Pilih Penilai 2" readonly="readonly" value="<?php echo nx_e($nip_penilai_2); ?>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-12">Nama Penilai 2</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" name="nama_penilai_2" placeholder="Pilih Penilai 2" readonly="readonly" value="<?php echo $nama_penilai_2; ?>">
+									<input type="text" class="form-control" name="nama_penilai_2" placeholder="Pilih Penilai 2" readonly="readonly" value="<?php echo nx_e($nama_penilai_2); ?>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-12">Unit Kerja Penilai 2</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" name="unit_kerja_penilai_2" readonly="readonly" placeholder="Pilih Penilai 2" value="<?php echo $unit_kerja_penilai_2 ?>">
+									<input type="text" class="form-control" name="unit_kerja_penilai_2" readonly="readonly" placeholder="Pilih Penilai 2" value="<?php echo nx_e($unit_kerja_penilai_2) ?>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-12">Rumpun Ilmu Penilai 2</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" name="rumpun_ilmu_penilai_2" placeholder="Pilih Penilai 2" readonly="readonly" value="<?php echo $rumpun_ilmu_penilai_2 ?>">
+									<input type="text" class="form-control" name="rumpun_ilmu_penilai_2" placeholder="Pilih Penilai 2" readonly="readonly" value="<?php echo nx_e($rumpun_ilmu_penilai_2) ?>">
 								</div>
 							</div>
 						</form>
-						<a href="pegawai_penilai_input_control.php?nip_pegawai=<?php echo $nip_pegawai; ?>&id_pengajuan=<?php echo $id_pengajuan; ?>" style="margin: 0 0 0 40.5%;" class="btn btn-primary">SELESAI</a>
+						<a href="pegawai_penilai_input_control.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>&id_pengajuan=<?php echo nx_e($id_pengajuan); ?>" style="margin: 0 0 0 40.5%;" class="btn btn-primary">SELESAI</a>
 					</div>
 				</div>
 			</div>

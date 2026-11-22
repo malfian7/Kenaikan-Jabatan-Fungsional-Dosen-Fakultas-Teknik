@@ -87,9 +87,9 @@ if ($rs_pengajuan->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="pegawai_beranda.php?nip_pegawai=<?php echo $nip_pegawai ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo $nip_pegawai; ?>" class="list-group-item list-group-item-action bg-light">Data Penilai</a>
-				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo $nip_pegawai; ?>" class="list-group-item list-group-item-action bg-info text-light">Data Pengajuan</a>
+				<a href="pegawai_beranda.php?nip_pegawai=<?php echo nx_e($nip_pegawai) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Data Penilai</a>
+				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-info text-light">Data Pengajuan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -103,23 +103,23 @@ if ($rs_pengajuan->recordCount() > 0) {
 							<table class="table table-sm table-borderless" width="100%" cellspacing="0">
 								<tr>
 									<td width="250">NIDN Dosen</td>
-									<td><b><?php echo $nip_dosen; ?></b></td>
+									<td><b><?php echo nx_e($nip_dosen); ?></b></td>
 								</tr>
 								<tr>
 									<td>Nama Dosen</td>
-									<td><?php echo $nama_dosen; ?></td>
+									<td><?php echo nx_e($nama_dosen); ?></td>
 								</tr>
 								<tr>
 									<td>Unit Kerja Dosen</td>
-									<td><?php echo $unit_kerja_dosen; ?></td>
+									<td><?php echo nx_e($unit_kerja_dosen); ?></td>
 								</tr>
 								<tr>
 									<td>Jabatan</td>
-									<td><?php echo $jabatan_asal; ?></td>
+									<td><?php echo nx_e($jabatan_asal); ?></td>
 								</tr>
 								<tr>
 									<td>Jabatan Tujuan</td>
-									<td><?php echo $jabatan_tujuan; ?></td>
+									<td><?php echo nx_e($jabatan_tujuan); ?></td>
 								</tr>
 							</table>
 						</div>
@@ -133,19 +133,19 @@ if ($rs_pengajuan->recordCount() > 0) {
 							<table class="table table-sm table-borderless" width="100%" cellspacing="0">
 								<tr>
 									<td width="250">NIDN Penilai 1</td>
-									<td><b><?php echo $nip_penilai_1 ?></b></td>
+									<td><b><?php echo nx_e($nip_penilai_1) ?></b></td>
 								</tr>
 								<tr>
 									<td>Nama Penilai 1</td>
-									<td><?php echo $nama_penilai_1; ?></td>
+									<td><?php echo nx_e($nama_penilai_1); ?></td>
 								</tr>
 								<tr>
 									<td>Unit Kerja Penilai 1</td>
-									<td><?php echo $unit_kerja_penilai_1; ?></td>
+									<td><?php echo nx_e($unit_kerja_penilai_1); ?></td>
 								</tr>
 								<tr>
 									<td>Rumpun Ilmu Penilai 1</td>
-									<td><?php echo $rumpun_ilmu_penilai_1; ?></td>
+									<td><?php echo nx_e($rumpun_ilmu_penilai_1); ?></td>
 								</tr>
 							</table>
 						</div>
@@ -153,19 +153,19 @@ if ($rs_pengajuan->recordCount() > 0) {
 							<table class="table table-sm table-borderless" width="100%" cellspacing="0">
 								<tr>
 									<td width="250">NIDN Penilai 2</td>
-									<td><b><?php echo $nip_penilai_2 ?></b></td>
+									<td><b><?php echo nx_e($nip_penilai_2) ?></b></td>
 								</tr>
 								<tr>
 									<td>Nama Penilai 2</td>
-									<td><?php echo $nama_penilai_2; ?></td>
+									<td><?php echo nx_e($nama_penilai_2); ?></td>
 								</tr>
 								<tr>
 									<td>Unit Kerja Penilai 2</td>
-									<td><?php echo $unit_kerja_penilai_2; ?></td>
+									<td><?php echo nx_e($unit_kerja_penilai_2); ?></td>
 								</tr>
 								<tr>
 									<td>Rumpun Ilmu Penilai 2</td>
-									<td><?php echo $rumpun_ilmu_penilai_2; ?></td>
+									<td><?php echo nx_e($rumpun_ilmu_penilai_2); ?></td>
 								</tr>
 							</table>
 						</div>

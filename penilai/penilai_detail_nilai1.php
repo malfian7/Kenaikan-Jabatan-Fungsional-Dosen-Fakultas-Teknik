@@ -53,9 +53,9 @@ if ($rs_berkas->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="penilai_beranda.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-info text-light">Daftar Pengajuan</a>
-				<a href="penilai_tabel_pak.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Tabel Nilai Angka Kredit</a>
+				<a href="penilai_beranda.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-info text-light">Daftar Pengajuan</a>
+				<a href="penilai_tabel_pak.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Tabel Nilai Angka Kredit</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -70,15 +70,15 @@ if ($rs_berkas->recordCount() > 0) {
 							<table class="table" id="tabelberkas" width="100%" cellspacing="0">
 								<tr>
 									<td width="150">Aspek</td>
-									<td><?php echo $aspek_rubrik; ?></td>
+									<td><?php echo nx_e($aspek_rubrik); ?></td>
 								</tr>
 								<tr>
 									<td>Kegiatan</td>
-									<td><?php echo $kegiatan_rubrik; ?></td>
+									<td><?php echo nx_e($kegiatan_rubrik); ?></td>
 								</tr>
 								<tr>
 									<td>Bukti</td>
-									<td><a target="_blank" href="<?php echo $bukti_berkas; ?>"><?php echo $bukti_berkas; ?></a></td>
+									<td><a target="_blank" href="<?php echo nx_e($bukti_berkas); ?>"><?php echo nx_e($bukti_berkas); ?></a></td>
 								</tr>
 							</table>
 						</div>
@@ -88,7 +88,7 @@ if ($rs_berkas->recordCount() > 0) {
 									<td width="133">Poin</td>
 									<td>
 										<div class="col-sm-2">
-											<input class="form-control" readonly="readonly" type="text" name="poin_awal" id="poin_awal" value="<?php echo $poin_awal; ?>"> <a href="javascript: void(0)" onClick="calc()"></a>
+											<input class="form-control" readonly="readonly" type="text" name="poin_awal" id="poin_awal" value="<?php echo nx_e($poin_awal); ?>"> <a href="javascript: void(0)" onClick="calc()"></a>
 										</div>
 									</td>
 								</tr>
@@ -96,7 +96,7 @@ if ($rs_berkas->recordCount() > 0) {
 									<td>Volume</td>
 									<td>
 										<div class="col-sm-2">
-											<input class="form-control" readonly="readonly" type="text" name="volume" id="volume" value="<?php echo $volume; ?>">
+											<input class="form-control" readonly="readonly" type="text" name="volume" id="volume" value="<?php echo nx_e($volume); ?>">
 										</div>
 									</td>
 								</tr>
@@ -104,7 +104,7 @@ if ($rs_berkas->recordCount() > 0) {
 									<td>Total Poin</td>
 									<td>
 										<div class="col-sm-2">
-											<input class="form-control" readonly="readonly" type="text" name="poin_1" id="poin_1" value="<?php echo $poin_1; ?>">
+											<input class="form-control" readonly="readonly" type="text" name="poin_1" id="poin_1" value="<?php echo nx_e($poin_1); ?>">
 										</div>
 									</td>
 								</tr>

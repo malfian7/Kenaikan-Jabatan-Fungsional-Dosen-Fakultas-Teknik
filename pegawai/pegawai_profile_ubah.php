@@ -40,9 +40,9 @@ if ($rs_pegawai->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="pegawai_beranda.php?nip_pegawai=<?php echo $nip_pegawai ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo $nip_pegawai; ?>" class="list-group-item list-group-item-action bg-light">Data Penilai</a>
-				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo $nip_pegawai; ?>" class="list-group-item list-group-item-action bg-light">Data Pengajuan</a>
+				<a href="pegawai_beranda.php?nip_pegawai=<?php echo nx_e($nip_pegawai) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Data Penilai</a>
+				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Data Pengajuan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -54,12 +54,12 @@ if ($rs_pegawai->recordCount() > 0) {
 					<div class="card-body">
 						<div class="table-responsive">
 							<table class="table table-borderless" id="tabelberkas" width="100%" cellspacing="0">
-								<form action="pegawai_profile_ubah_code.php?nip_pegawai=<?php echo $nip_pegawai; ?>" method="POST">
+								<form action="pegawai_profile_ubah_code.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" method="POST">
 									<tr>
 										<td width="150">NIP</td>
 										<td>
 											<div class="col-sm-3">
-												<input type="text" name="nip_pegawai" value="<?php echo $nip_pegawai; ?>" readonly="readonly" class="form-control">
+												<input type="text" name="nip_pegawai" value="<?php echo nx_e($nip_pegawai); ?>" readonly="readonly" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -67,7 +67,7 @@ if ($rs_pegawai->recordCount() > 0) {
 										<td>Nama</td>
 										<td>
 											<div class="col-sm-8">
-												<input type="text" name="nama_pegawai" value="<?php echo $nama_pegawai; ?>" class="form-control">
+												<input type="text" name="nama_pegawai" value="<?php echo nx_e($nama_pegawai); ?>" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -75,7 +75,7 @@ if ($rs_pegawai->recordCount() > 0) {
 										<td>Unit Kerja</td>
 										<td>
 											<div class="col-sm-8">
-												<input type="text" name="unit_kerja_pegawai" value="<?php echo $unit_kerja_pegawai; ?>" class="form-control">
+												<input type="text" name="unit_kerja_pegawai" value="<?php echo nx_e($unit_kerja_pegawai); ?>" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -83,7 +83,7 @@ if ($rs_pegawai->recordCount() > 0) {
 										<td>Alamat</td>
 										<td>
 											<div class="col-sm-8">
-												<input type="text" name="alamat_pegawai" value="<?php echo $alamat_pegawai; ?>" class="form-control">
+												<input type="text" name="alamat_pegawai" value="<?php echo nx_e($alamat_pegawai); ?>" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -91,7 +91,7 @@ if ($rs_pegawai->recordCount() > 0) {
 										<td>Telepon</td>
 										<td>
 											<div class="col-sm-3">
-												<input type="text" name="telepon_pegawai" value="<?php echo $telepon_pegawai; ?>" class="form-control">
+												<input type="text" name="telepon_pegawai" value="<?php echo nx_e($telepon_pegawai); ?>" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -99,7 +99,7 @@ if ($rs_pegawai->recordCount() > 0) {
 										<td>Password</td>
 										<td>
 											<div class="col-sm-3">
-												<input type="text" name="password_pegawai" value="<?php echo $password_pegawai; ?>" class="form-control">
+												<input type="password" name="password_pegawai" value="" class="form-control" minlength="6" autocomplete="new-password" placeholder="Kosongkan jika tidak ingin mengganti">
 											</div>
 										</td>
 									</tr>

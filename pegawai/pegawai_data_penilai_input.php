@@ -36,9 +36,9 @@ if ($rs_pegawai->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="pegawai_beranda.php?nip_pegawai=<?php echo $nip_pegawai ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo $nip_pegawai; ?>" class="list-group-item list-group-item-action bg-info text-light">Data Penilai</a>
-				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo $nip_pegawai; ?>" class="list-group-item list-group-item-action bg-light">Data Pengajuan</a>
+				<a href="pegawai_beranda.php?nip_pegawai=<?php echo nx_e($nip_pegawai) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-info text-light">Data Penilai</a>
+				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Data Pengajuan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -48,7 +48,7 @@ if ($rs_pegawai->recordCount() > 0) {
 				<div class="card">
 					<div class="card-header bg-primary text-light"><b>MASUKKAN DATA PENILAI</b></div>
 					<div class="card-body">
-						<form action="pegawai_data_penilai_input_code.php?nip_pegawai=<?php echo $nip_pegawai; ?>" method="post">
+						<form action="pegawai_data_penilai_input_code.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" method="post">
 							<div class="form-group">
 								<label class="control-label col-sm-2">Nama:</label>
 								<div class="col-sm-6">
@@ -103,7 +103,7 @@ if ($rs_pegawai->recordCount() > 0) {
 							<div class="form-group">
 								<label class="control-label col-sm-2">Password:</label>
 								<div class="col-sm-6">
-									<input type="password" class="form-control" name="password_penilai" placeholder="Password Penilai" required="required">
+									<input type="password" class="form-control" name="password_penilai" placeholder="Password awal (minimal 6 karakter)" required="required" minlength="6" autocomplete="new-password">
 								</div>
 							</div>
 							<input type="submit" name="simpan" value="Simpan" style="margin: 0 0 0 41%;" class="btn btn-success">

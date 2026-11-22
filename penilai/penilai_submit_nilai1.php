@@ -1,35 +1,21 @@
 <?php
 	include_once("../koneksi/conn.php");
-	$nip_penilai 		= $_GET['nip_penilai'];
-	$id_pengajuan 		= $_GET['id_pengajuan'];
+	$nip_penilai  = $_GET['nip_penilai'];
+	$id_pengajuan = isset($_GET['id_pengajuan']) ? $_GET['id_pengajuan'] : '';
+	$balik = "penilai_data_berkas_penilai1.php?nip_penilai=" . rawurlencode($nip_penilai) . "&id_pengajuan=" . rawurlencode($id_pengajuan);
 
-	$nip_selesai = $nip_penilai . 'V';
-
-	$update = "UPDATE pengajuan SET nip_penilai_1 = '$nip_selesai' WHERE id_pengajuan = '$id_pengajuan'";
-	$koneksi->Execute($update);
-
-	$select_penilai = "SELECT nip_penilai_1,nip_penilai_2 FROM pengajuan WHERE nip_penilai_1 LIKE '%V' AND nip_penilai_2 LIKE '%V' AND id_pengajuan = '$id_pengajuan'";
-	$rs_penilai = $koneksi->Execute($select_penilai);
-	
-	if($rs_penilai->recordCount()>0){
-		while(!$rs_penilai->EOF){
-			$nip_penilai_1 = $rs_penilai->fields[0];
-			$nip_penilai_2 = $rs_penilai->fields[1];
-			$rs_penilai->MoveNext();
-		}
-		$nip_penilai_1_baru = rtrim($nip_penilai_1, "V");
-		$nip_penilai_2_baru = rtrim($nip_penilai_2, "V");
-
-		$select_poin = "SELECT SUM(poin_akhir) FROM berkas_pak WHERE id_pengajuan='$id_pengajuan'";
-		$rs_poin=$koneksi->Execute($select_poin);
-		if($rs_poin->recordCount()>0){
-			while(!$rs_poin->EOF){
-				$total_poin = $rs_poin->fields[0];
-				$rs_poin->MoveNext();
-			}
-		} 
-
-		$update_pengajuan = "UPDATE pengajuan SET status_pengajuan = 'PENILAIAN SELESAI', nip_penilai_1 = '$nip_penilai_1_baru', nip_penilai_2 = '$nip_penilai_2_baru', total_pak_akhir = '$total_poin' WHERE id_pengajuan = '$id_pengajuan'";
-		$koneksi->Execute($update_pengajuan);
+	// Penanda 'V' di belakang NIP berarti penilai tersebut sudah menyelesaikan (mengunci) penilaiannya.
+	$p = $koneksi->GetRow("SELECT status_pengajuan, nip_penilai_1 FROM pengajuan WHERE id_pengajuan = ?", array($id_pengajuan));
+	if (!$p || $p[1] !== $nip_penilai || $p[0] !== 'BERKAS DITERIMA') {
+		nx_done("penilai_daftar_pengajuan_selesai.php?nip_penilai=" . rawurlencode($nip_penilai), 'error', 'Penilaian ini sudah diselesaikan atau bukan bagian Anda.');
 	}
-	header("location:penilai_daftar_pengajuan_selesai.php?nip_penilai=$nip_penilai");
+	$koneksi->Execute("UPDATE pengajuan SET nip_penilai_1 = ? WHERE id_pengajuan = ? AND nip_penilai_1 = ?", array($nip_penilai . 'V', $id_pengajuan, $nip_penilai));
+
+	// Jika kedua penilai sudah selesai, buka kunci NIP dan tutup penilaian.
+	$baris = $koneksi->GetRow("SELECT nip_penilai_1, nip_penilai_2 FROM pengajuan WHERE id_pengajuan = ? AND nip_penilai_1 LIKE '%V' AND nip_penilai_2 LIKE '%V'", array($id_pengajuan));
+	if ($baris) {
+		$total = (float) $koneksi->GetOne("SELECT COALESCE(SUM(poin_akhir), 0) FROM berkas_pak WHERE id_pengajuan = ?", array($id_pengajuan));
+		$koneksi->Execute("UPDATE pengajuan SET status_pengajuan = 'PENILAIAN SELESAI', nip_penilai_1 = ?, nip_penilai_2 = ?, total_pak_akhir = ? WHERE id_pengajuan = ?",
+			array(rtrim($baris[0], 'V'), rtrim($baris[1], 'V'), (int) round($total), $id_pengajuan));
+	}
+	nx_done("penilai_daftar_pengajuan_selesai.php?nip_penilai=" . rawurlencode($nip_penilai), 'success', 'Penilaian Anda dikirim.');

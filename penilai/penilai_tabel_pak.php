@@ -45,9 +45,9 @@ if ($rs_rubrik->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="penilai_beranda.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-light">Daftar Pengajuan</a>
-				<a href="penilai_tabel_pak.php?nip_penilai=<?php echo $nip_penilai; ?>" class="list-group-item list-group-item-action bg-info text-light">Tabel Nilai Angka Kredit</a>
+				<a href="penilai_beranda.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="penilai_daftar_pengajuan.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-light">Daftar Pengajuan</a>
+				<a href="penilai_tabel_pak.php?nip_penilai=<?php echo nx_e($nip_penilai); ?>" class="list-group-item list-group-item-action bg-info text-light">Tabel Nilai Angka Kredit</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -70,10 +70,10 @@ if ($rs_rubrik->recordCount() > 0) {
 								<tbody>
 									<?php foreach ($data_rubrik as $value_rubrik) : ?>
 										<tr>
-											<td><?php echo $value_rubrik[0]; ?></td>
-											<td><?php echo $value_rubrik[1]; ?></td>
-											<td><?php echo $value_rubrik[2]; ?></td>
-											<td><?php echo $value_rubrik[3]; ?></td>
+											<td><?php echo nx_e($value_rubrik[0]); ?></td>
+											<td><?php echo nx_e($value_rubrik[1]); ?></td>
+											<td><?php echo nx_e($value_rubrik[2]); ?></td>
+											<td><?php echo nx_e($value_rubrik[3]); ?></td>
 										</tr>
 									<?php endforeach; ?>
 								</tbody>
