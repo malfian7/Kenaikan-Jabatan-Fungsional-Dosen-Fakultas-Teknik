@@ -38,7 +38,7 @@ if ($rs_pengajuan2->recordCount() > 0) {
 	<meta name="author" content="">
 
 	<link rel="manifest" href="site.webmanifest">
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/FT.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('../')); ?>">
 
 	<!-- css here -->
 	<title>Sistem Informasi Kenaikan Jabatan Dosen</title>
@@ -185,21 +185,21 @@ if ($rs_pengajuan2->recordCount() > 0) {
 	<script src="../asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" language="javascript" src="../DataTables/assets/js/jquery.dataTables.min.js"></script>
 
-	<script type="text/javascript" class="init">
+	<script type="text/javascript" class="init" nonce="<?php echo nx_nonce(); ?>">
 		$(document).ready(function() {
 			$('#example1').DataTable({
 				"pageLength": 3
 			});
 		});
 	</script>
-	<script type="text/javascript" class="init">
+	<script type="text/javascript" class="init" nonce="<?php echo nx_nonce(); ?>">
 		$(document).ready(function() {
 			$('#example2').DataTable({
 				"pageLength": 3
 			});
 		});
 	</script>
-	<script>
+	<script nonce="<?php echo nx_nonce(); ?>">
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");

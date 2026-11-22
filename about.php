@@ -1,3 +1,4 @@
+<?php include_once __DIR__ . '/koneksi/conn.php'; ?>
 <!doctype html>
 <html lang="id">
 
@@ -9,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/FT.png">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('')); ?>">
 
     <link href="asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="asset/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

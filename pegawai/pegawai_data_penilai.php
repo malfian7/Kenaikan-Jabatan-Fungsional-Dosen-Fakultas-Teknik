@@ -29,7 +29,7 @@ if ($rs_penilai->recordCount() > 0) {
 	<meta name="author" content="">
 
 	<link rel="manifest" href="site.webmanifest">
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/FT.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('../')); ?>">
 
 	<!-- css here -->
 	<title>Sistem Informasi Kenaikan Jabatan Dosen</title>
@@ -49,6 +49,8 @@ if ($rs_penilai->recordCount() > 0) {
 				<a href="pegawai_beranda.php?nip_pegawai=<?php echo nx_e($nip_pegawai) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
 				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-info text-light">Data Penilai</a>
 				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Data Pengajuan</a>
+				<a href="pegawai_aturan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Aturan Jabatan</a>
+				<a href="pegawai_pengaturan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Pengaturan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -104,12 +106,12 @@ if ($rs_penilai->recordCount() > 0) {
 	<script src="../asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" language="javascript" src="../DataTables/assets/js/jquery.dataTables.min.js"></script>
 
-	<script type="text/javascript" class="init">
+	<script type="text/javascript" class="init" nonce="<?php echo nx_nonce(); ?>">
 		$(document).ready(function() {
 			$('#example').DataTable();
 		});
 	</script>
-	<script>
+	<script nonce="<?php echo nx_nonce(); ?>">
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");

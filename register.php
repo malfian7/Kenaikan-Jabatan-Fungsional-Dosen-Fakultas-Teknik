@@ -1,3 +1,4 @@
+<?php include_once __DIR__ . '/koneksi/conn.php'; ?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -5,11 +6,11 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Daftar akun dosen SIPAK Fakultas Teknik UHAMKA">
+	<meta name="description" content="Daftar akun dosen SIPAK <?php echo nx_e(nx_pengaturan('institusi')); ?>">
 	<meta name="author" content="">
 
 	<link rel="manifest" href="site.webmanifest">
-	<link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/FT.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('')); ?>">
 
 	<title>Daftar · SIPAK</title>
 	<link href="asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +21,7 @@
 <body class="nx-login">
 	<div class="nx-auth">
 		<aside class="nx-auth-aside">
-			<a class="nx-auth-brand" href="index.php"><img src="assets/img/logo/FT.png" alt="">SIPAK · Fakultas Teknik</a>
+			<a class="nx-auth-brand" href="index.php"><img src="<?php echo nx_e(nx_logo('')); ?>" alt=""><?php echo nx_e(nx_pengaturan('app')); ?> · <?php echo nx_e(nx_pengaturan('unit')); ?></a>
 			<div class="nx-auth-hero">
 				<h1>Mulai perjalanan kenaikan jabatan Anda.</h1>
 				<p>Buat akun dosen untuk menyimulasikan angka kredit, mengunggah berkas, dan memantau status pengajuan.</p>

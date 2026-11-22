@@ -1,15 +1,16 @@
+<?php include_once __DIR__ . '/koneksi/conn.php'; ?>
 <!doctype html>
 <html lang="id">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Sistem Informasi Kenaikan Jabatan Dosen · Fakultas Teknik UHAMKA</title>
-    <meta name="description" content="Simulasikan angka kredit dan ajukan kenaikan jabatan fungsional dosen Fakultas Teknik UHAMKA secara daring.">
+    <title>Sistem Informasi Kenaikan Jabatan Dosen · <?php echo nx_e(nx_pengaturan('institusi')); ?></title>
+    <meta name="description" content="Simulasikan angka kredit dan ajukan kenaikan jabatan fungsional dosen <?php echo nx_e(nx_pengaturan('institusi')); ?> secara daring.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/FT.png">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('')); ?>">
 
     <link href="asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="asset/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -25,9 +26,9 @@
         <section class="nx-hero">
             <div class="nx-wrap">
                 <div>
-                    <span class="nx-pill"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Fakultas Teknik UHAMKA</span>
+                    <span class="nx-pill"><i class="fas fa-graduation-cap" aria-hidden="true"></i><?php echo nx_e(nx_pengaturan('institusi')); ?></span>
                     <h1>Kenaikan jabatan dosen, <em>lebih terarah.</em></h1>
-                    <p class="nx-lead">Selamat datang di website Kenaikan Jabatan Dosen Fakultas Teknik UHAMKA. Simulasikan angka kredit, unggah berkas, dan pantau setiap tahap pengajuan Anda di satu tempat.</p>
+                    <p class="nx-lead">Selamat datang di website Kenaikan Jabatan Dosen <?php echo nx_e(nx_pengaturan('institusi')); ?>. Simulasikan angka kredit, unggah berkas, dan pantau setiap tahap pengajuan Anda di satu tempat.</p>
                     <div class="nx-hero-cta">
                         <a class="btn btn-primary" href="#masuk">Masuk sesuai peran<i class="fas fa-arrow-down" aria-hidden="true"></i></a>
                         <a class="btn nx-btn-plain" href="https://drive.google.com/file/d/1kug1r_n1FW4VZ9Sr0mp_bFHxMhK8_3fE/view"><i class="fas fa-book-open" aria-hidden="true"></i>Download User Guide</a>

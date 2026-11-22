@@ -32,8 +32,7 @@ if ($rs_poin->recordCount() > 0) {
 }
 
 $total_poin = isset($total_poin) && is_numeric($total_poin) ? (float) $total_poin : 0;
-$update_poin = "UPDATE pengajuan SET total_pak_akhir = '$total_poin' WHERE id_pengajuan = $id_pengajuan;";
-$koneksi->Execute($update_poin);
+// total_pak_akhir dijaga trigger database pada tabel berkas_pak (tidak ada tulis saat halaman dibuka)
 
 $select_pengajuan = "SELECT pengajuan.tanggal_pengajuan, dosen.nip_dosen, dosen.nama_dosen, pengajuan.jabatan_asal, pengajuan.tanggal_sk, pengajuan.jabatan_tujuan, pengajuan.dokumen_pendukung, pengajuan.status_pengajuan, syarat_kum.total_pak, pengajuan.total_pak_akhir FROM pengajuan INNER JOIN syarat_kum ON pengajuan.id_kum=syarat_kum.id_kum INNER JOIN dosen ON pengajuan.nip_dosen=dosen.nip_dosen WHERE id_pengajuan='$id_pengajuan'";
 $rs_pengajuan = $koneksi->Execute($select_pengajuan);
@@ -64,7 +63,7 @@ if ($rs_pengajuan->recordCount() > 0) {
 	<meta name="author" content="">
 
 	<link rel="manifest" href="site.webmanifest">
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/FT.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('../')); ?>">
 
 	<!-- css here -->
 	<title>Sistem Informasi Kenaikan Jabatan Dosen</title>
@@ -83,6 +82,8 @@ if ($rs_pengajuan->recordCount() > 0) {
 				<a href="pegawai_beranda.php?nip_pegawai=<?php echo nx_e($nip_pegawai) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
 				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Data Penilai</a>
 				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-info text-light">Data Pengajuan</a>
+				<a href="pegawai_aturan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Aturan Jabatan</a>
+				<a href="pegawai_pengaturan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Pengaturan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -134,6 +135,7 @@ if ($rs_pengajuan->recordCount() > 0) {
 						</div>
 					</div>
 				</div>
+				<?php include_once "../include/nx_riwayat.php"; nx_riwayat_panel($koneksi, $id_pengajuan); ?>
 				<h1></h1>
 				<div class="card">
 					<div class="card-header bg-primary text-light"><b>DATA BERKAS</b></div>
@@ -216,12 +218,12 @@ if ($rs_pengajuan->recordCount() > 0) {
 	<script src="../asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" language="javascript" src="../DataTables/assets/js/jquery.dataTables.min.js"></script>
 
-	<script type="text/javascript" class="init">
+	<script type="text/javascript" class="init" nonce="<?php echo nx_nonce(); ?>">
 		$(document).ready(function() {
 			$('#example').DataTable();
 		});
 	</script>
-	<script>
+	<script nonce="<?php echo nx_nonce(); ?>">
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");

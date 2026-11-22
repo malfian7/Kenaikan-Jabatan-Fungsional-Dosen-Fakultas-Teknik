@@ -38,7 +38,7 @@ if ($rs_berkas->recordCount() > 0) {
 	<meta name="author" content="">
 
 	<link rel="manifest" href="site.webmanifest">
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/FT.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('../')); ?>">
 
 	<!-- css here -->
 	<title>Sistem Informasi Kenaikan Jabatan Dosen</title>
@@ -88,7 +88,7 @@ if ($rs_berkas->recordCount() > 0) {
 									<td width="133">Poin</td>
 									<td>
 										<div class="col-sm-2">
-											<input class="form-control" readonly="readonly" type="text" name="poin_awal" id="poin_awal" value="<?php echo nx_e($poin_awal); ?>"> <a href="javascript: void(0)" onClick="calc()"></a>
+											<input class="form-control" readonly="readonly" type="text" name="poin_awal" id="poin_awal" value="<?php echo nx_e($poin_awal); ?>">
 										</div>
 									</td>
 								</tr>
@@ -120,12 +120,12 @@ if ($rs_berkas->recordCount() > 0) {
 	<script src="../asset/vendor/jquery/jquery.min.js"></script>
 	<script src="../asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<script type="text/javascript">
+	<script type="text/javascript" nonce="<?php echo nx_nonce(); ?>">
 		$("#poin_awal,#volume").keyup(function() {
 			$('#poin_1').val($('#volume').val() * $('#poin_awal').val());
 		});
 	</script>
-	<script>
+	<script nonce="<?php echo nx_nonce(); ?>">
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");

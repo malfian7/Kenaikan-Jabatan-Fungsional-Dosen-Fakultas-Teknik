@@ -21,7 +21,7 @@ if ($rs_penilai->recordCount() > 0) {
 	<meta name="author" content="">
 
 	<link rel="manifest" href="site.webmanifest">
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/FT.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('../')); ?>">
 
 	<!-- css here -->
 	<title>Sistem Informasi Kenaikan Jabatan Dosen</title>
@@ -56,7 +56,7 @@ if ($rs_penilai->recordCount() > 0) {
 	<script src="../asset/vendor/jquery/jquery.min.js"></script>
 	<script src="../asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<script>
+	<script nonce="<?php echo nx_nonce(); ?>">
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");

@@ -6,11 +6,11 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Sistem Informasi Kenaikan Jabatan Dosen Fakultas Teknik UHAMKA">
+	<meta name="description" content="Sistem Informasi Kenaikan Jabatan Dosen <?php echo nx_e(nx_pengaturan('institusi')); ?>">
 	<meta name="author" content="">
 
 	<link rel="manifest" href="site.webmanifest">
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/FT.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('../')); ?>">
 
 	<title>Masuk sebagai Pegawai · SIPAK</title>
 	<link href="../asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +21,7 @@
 <body class="nx-login" data-role-page="pegawai">
 	<div class="nx-auth">
 		<aside class="nx-auth-aside">
-			<a class="nx-auth-brand" href="../index.php"><img src="../assets/img/logo/FT.png" alt="">SIPAK · Fakultas Teknik</a>
+			<a class="nx-auth-brand" href="../index.php"><img src="<?php echo nx_e(nx_logo('../')); ?>" alt=""><?php echo nx_e(nx_pengaturan('app')); ?> · <?php echo nx_e(nx_pengaturan('unit')); ?></a>
 			<div class="nx-auth-hero">
 				<h1>Periksa berkas dengan cepat dan teliti.</h1>
 				<p>Validasi keaslian berkas pengajuan, kelola tim penilai, lalu terbitkan SK kenaikan jabatan.</p>
