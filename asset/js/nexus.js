@@ -242,4 +242,233 @@
     var h = new Date().getHours();
     el.textContent = h < 11 ? "Selamat pagi" : h < 15 ? "Selamat siang" : h < 19 ? "Selamat sore" : "Selamat malam";
   });
+  /* ---------- 14. Toast: pesan dari server (#nx-flash) dan window.nxToast ---------- */
+  var toastHost = null;
+  var TOAST_ICON = { success: "fa-check-circle", error: "fa-exclamation-circle", info: "fa-info-circle" };
+  function toastRoot() {
+    if (toastHost) return toastHost;
+    toastHost = doc.createElement("div");
+    toastHost.className = "nx-toasts";
+    toastHost.setAttribute("aria-live", "polite");
+    toastHost.setAttribute("aria-atomic", "false");
+    doc.body.appendChild(toastHost);
+    return toastHost;
+  }
+  function nxToast(msg, type) {
+    type = TOAST_ICON[type] ? type : "info";
+    var ms = type === "error" ? 7000 : 4500;
+    var el = doc.createElement("div");
+    el.className = "nx-toast nx-toast--" + type;
+    el.setAttribute("role", type === "error" ? "alert" : "status");
+    el.style.setProperty("--ms", ms + "ms");
+    el.innerHTML = '<i class="fas ' + TOAST_ICON[type] + ' nx-toast-ico" aria-hidden="true"></i>' +
+      '<div class="nx-toast-msg"></div>' +
+      '<button type="button" class="nx-toast-x" aria-label="Tutup pesan"><i class="fas fa-times" aria-hidden="true"></i></button>' +
+      '<span class="nx-toast-time" aria-hidden="true"></span>';
+    $(".nx-toast-msg", el).textContent = msg;
+    var host = toastRoot();
+    host.appendChild(el);
+    while (host.children.length > 4) host.removeChild(host.firstElementChild);
+    var timer, left = ms, began = Date.now(), gone = false;
+    function close() {
+      if (gone) return; gone = true; clearTimeout(timer);
+      el.classList.add("is-leaving");
+      var done = function () { if (el.parentNode) el.parentNode.removeChild(el); };
+      el.addEventListener("animationend", done, { once: true });
+      setTimeout(done, 400);
+    }
+    function arm() { began = Date.now(); timer = setTimeout(close, left); el.classList.remove("is-paused"); }
+    function hold() { clearTimeout(timer); left -= Date.now() - began; el.classList.add("is-paused"); }
+    el.addEventListener("mouseenter", hold);
+    el.addEventListener("mouseleave", function () { if (!gone) arm(); });
+    el.addEventListener("focusin", hold);
+    el.addEventListener("focusout", function () { if (!gone) arm(); });
+    $(".nx-toast-x", el).addEventListener("click", close);
+    arm();
+    return { close: close };
+  }
+  window.nxToast = nxToast;
+  function showFlash() {
+    var flash = $("#nx-flash");   // disisipkan server tepat sebelum </body>, setelah skrip ini
+    if (flash) setTimeout(function () { nxToast(flash.getAttribute("data-msg") || "", flash.getAttribute("data-type")); }, 220);
+  }
+  if (doc.readyState === "loading") doc.addEventListener("DOMContentLoaded", showFlash); else showFlash();
+
+  /* ---------- 15. Dialog konfirmasi: tombol[data-confirm-title] ---------- */
+  var dlg = null, dlgLast = null;
+  function buildDialog() {
+    var wrap = doc.createElement("div");
+    wrap.className = "nx-dialog";
+    wrap.hidden = true;
+    wrap.innerHTML =
+      '<div class="nx-dialog-scrim" data-close></div>' +
+      '<div class="nx-dialog-box" role="alertdialog" aria-modal="true" aria-labelledby="nx-dlg-t" aria-describedby="nx-dlg-d" tabindex="-1">' +
+        '<div class="nx-dialog-ico" aria-hidden="true"><i class="fas"></i></div>' +
+        '<h2 class="nx-dialog-title" id="nx-dlg-t"></h2>' +
+        '<p class="nx-dialog-text" id="nx-dlg-d"></p>' +
+        '<div class="nx-dialog-actions">' +
+          '<button type="button" class="btn btn-light" data-close>Batal</button>' +
+          '<button type="button" class="btn nx-dialog-ok"></button>' +
+        '</div>' +
+      '</div>';
+    doc.body.appendChild(wrap);
+    return wrap;
+  }
+  function openConfirm(btn, onOk) {
+    dlg = dlg || buildDialog();
+    var tone = btn.getAttribute("data-confirm-tone") || "primary";
+    var box = $(".nx-dialog-box", dlg), ok = $(".nx-dialog-ok", dlg), cancel = $("[data-close].btn", dlg);
+    box.setAttribute("data-tone", tone);
+    $(".nx-dialog-ico i", dlg).className = "fas " + (tone === "danger" ? "fa-trash-alt" : "fa-check");
+    $(".nx-dialog-title", dlg).textContent = btn.getAttribute("data-confirm-title") || "Lanjutkan?";
+    $(".nx-dialog-text", dlg).textContent = btn.getAttribute("data-confirm-text") || "";
+    ok.textContent = btn.getAttribute("data-confirm-label") || "Ya, lanjutkan";
+    ok.className = "btn nx-dialog-ok " + (tone === "danger" ? "btn-danger-solid" : "btn-primary");
+    // Animasi tumbuh dari tombol yang diklik (origin-aware)
+    var r = btn.getBoundingClientRect(), vw = window.innerWidth, vh = window.innerHeight;
+    var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    dlgLast = doc.activeElement;
+    dlg.hidden = false;
+    var br = box.getBoundingClientRect();
+    box.style.transformOrigin = Math.max(0, Math.min(br.width, cx - br.left)) + "px " + Math.max(0, Math.min(br.height, cy - br.top)) + "px";
+    root.classList.add("nx-dialog-open");
+    void dlg.offsetWidth;
+    dlg.classList.add("is-open");
+    (tone === "danger" ? cancel : ok).focus({ preventScroll: true });
+
+    function shut(result) {
+      doc.removeEventListener("keydown", onKey, true);
+      dlg.removeEventListener("click", onClick);
+      dlg.classList.remove("is-open");
+      root.classList.remove("nx-dialog-open");
+      var fin = function () { dlg.hidden = true; };
+      if (reduceMotion) fin(); else setTimeout(fin, 160);
+      if (result) { onOk(); }
+      else if (dlgLast && dlgLast.focus) dlgLast.focus({ preventScroll: true });
+    }
+    function onClick(e) {
+      if (e.target.closest(".nx-dialog-ok")) shut(true);
+      else if (e.target.closest("[data-close]")) shut(false);
+    }
+    function onKey(e) {
+      if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); shut(false); return; }
+      if (e.key !== "Tab") return;
+      var f = $$("button", box);
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && doc.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && doc.activeElement === last) { e.preventDefault(); first.focus(); }
+      else if (!box.contains(doc.activeElement)) { e.preventDefault(); first.focus(); }
+    }
+    doc.addEventListener("keydown", onKey, true);
+    dlg.addEventListener("click", onClick);
+  }
+  doc.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest("[data-confirm-title]");
+    if (!btn || e.defaultPrevented) return;
+    var form = btn.form || btn.closest("form");
+    if (!form) return;
+    e.preventDefault();
+    openConfirm(btn, function () {
+      if (form.requestSubmit) form.requestSubmit(btn.type === "submit" ? btn : undefined);
+      else form.submit();
+    });
+  }, true);
+
+  /* ---------- 16. Bilah progres navigasi (muncul bila halaman berikutnya lambat) ---------- */
+  var navBar = doc.createElement("div");
+  navBar.className = "nx-nav-progress";
+  navBar.setAttribute("aria-hidden", "true");
+  doc.body.appendChild(navBar);
+  var navTimer = null;
+  function navStart() {
+    if (navTimer) return;
+    navTimer = setTimeout(function () { navBar.classList.add("is-on"); }, 120);
+  }
+  function navReset() { clearTimeout(navTimer); navTimer = null; navBar.classList.remove("is-on"); }
+  doc.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (a.target && a.target !== "_self") return;
+    if (a.hasAttribute("download") || a.hasAttribute("data-toggle") || a.hasAttribute("data-dismiss")) return;
+    var href = a.getAttribute("href") || "";
+    if (!href || href.charAt(0) === "#" || /^(javascript|mailto|tel):/i.test(href)) return;
+    if (a.origin && a.origin !== location.origin) return;
+    if (a.pathname === location.pathname && a.search === location.search && a.hash) return;
+    navStart();
+  });
+  doc.addEventListener("submit", function (e) { if (!e.defaultPrevented) navStart(); });
+  window.addEventListener("pageshow", navReset);
+  window.addEventListener("beforeunload", function () { /* biarkan bilah tetap tampil sampai halaman berganti */ });
+
+  /* ---------- 17. Validasi form: bergetar halus + pesan di bawah kolom ---------- */
+  $$("form").forEach(function (f) {
+    if (f.hasAttribute("novalidate")) return;
+    f.setAttribute("novalidate", "");           // pesan bawaan browser diganti pesan Nexus
+    f.addEventListener("submit", function (e) {
+      if (f.checkValidity()) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      f.classList.remove("nx-busy");
+      var first = null;
+      $$("input, select, textarea", f).forEach(function (el) {
+        if (el.type === "hidden" || el.validity.valid) { clearErr(el); return; }
+        showErr(el);
+        if (!first) first = el;
+      });
+      if (first) {
+        first.focus({ preventScroll: true });
+        if (first.scrollIntoView) first.scrollIntoView({ block: "center", behavior: reduceMotion ? "auto" : "smooth" });
+      }
+    }, true);
+    f.addEventListener("input", function (e) { if (e.target.classList && e.target.classList.contains("is-invalid") && e.target.validity.valid) clearErr(e.target); });
+    f.addEventListener("change", function (e) { if (e.target.classList && e.target.classList.contains("is-invalid") && e.target.validity.valid) clearErr(e.target); });
+  });
+  function errText(el) {
+    var v = el.validity;
+    if (v.valueMissing) return el.type === "file" ? "Pilih berkas terlebih dahulu." : el.tagName === "SELECT" ? "Pilih salah satu opsi." : "Kolom ini wajib diisi.";
+    if (v.typeMismatch) return el.type === "email" ? "Format email belum sesuai." : "Format isian belum sesuai.";
+    if (v.tooShort) return "Minimal " + el.minLength + " karakter.";
+    if (v.tooLong) return "Maksimal " + el.maxLength + " karakter.";
+    if (v.rangeUnderflow) return "Nilai minimal " + el.min + ".";
+    if (v.rangeOverflow) return "Nilai maksimal " + el.max + ".";
+    if (v.patternMismatch) return el.title || "Format isian belum sesuai.";
+    return el.validationMessage || "Isian belum valid.";
+  }
+  function showErr(el) {
+    el.classList.add("is-invalid");
+    el.setAttribute("aria-invalid", "true");
+    var host = el.closest(".nx-input-wrap") || el;
+    var msg = host.parentNode.querySelector(".nx-err[data-for='" + (el.id || el.name) + "']");
+    if (!msg) {
+      msg = doc.createElement("div");
+      msg.className = "nx-err";
+      msg.setAttribute("data-for", el.id || el.name || "");
+      msg.id = "nx-err-" + (el.id || el.name || Math.random().toString(36).slice(2, 7));
+      host.parentNode.insertBefore(msg, host.nextSibling);
+    }
+    msg.textContent = errText(el);
+    el.setAttribute("aria-describedby", msg.id);
+    el.classList.remove("nx-shake"); void el.offsetWidth; el.classList.add("nx-shake");
+  }
+  function clearErr(el) {
+    el.classList.remove("is-invalid", "nx-shake");
+    el.removeAttribute("aria-invalid");
+    var host = el.closest(".nx-input-wrap") || el;
+    var msg = host.parentNode && host.parentNode.querySelector(".nx-err[data-for='" + (el.id || el.name) + "']");
+    if (msg) { el.removeAttribute("aria-describedby"); msg.parentNode.removeChild(msg); }
+  }
+
+  /* ---------- 18. Muncul saat di-scroll (kartu panjang di bawah lipatan) ---------- */
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    var below = $$(".container-fluid > .card, .nx-panel").filter(function (el) { return el.getBoundingClientRect().top > window.innerHeight * 0.92; });
+    if (below.length) {
+      var io = new IntersectionObserver(function (ents) {
+        ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("nx-in"); io.unobserve(en.target); } });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+      below.forEach(function (el) { el.classList.add("nx-reveal"); io.observe(el); });
+    }
+  }
+
+  /* ---------- 19. Tombol salin/ripple tidak dipakai; indikator halaman siap ---------- */
+  root.classList.add("nx-ready");
 })();

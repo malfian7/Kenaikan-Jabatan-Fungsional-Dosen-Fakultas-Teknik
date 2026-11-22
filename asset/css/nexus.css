@@ -820,7 +820,7 @@ body.nx-login { min-height: 100vh; background: var(--kertas-1); overflow-x: hidd
 .nx-field { position: relative; margin-bottom: 18px; }
 .nx-field label { display: block; margin-bottom: 7px; }
 .nx-field .nx-input-wrap { position: relative; }
-.nx-field .nx-input-wrap > i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--tinta-4); pointer-events: none; transition: color var(--dur-cepat) ease; }
+.nx-field .nx-input-wrap > i { position: absolute; z-index: 2; left: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--tinta-4); pointer-events: none; transition: color var(--dur-cepat) ease; }
 .nx-field .form-control { height: 48px; padding-left: 42px; border-radius: 12px; }
 .nx-field .nx-input-wrap:focus-within > i { color: var(--stempel); }
 .nx-pw-toggle { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 36px; height: 36px; border: 0; border-radius: 8px; background: transparent; color: var(--tinta-3); cursor: pointer; transition: background-color var(--dur-cepat) ease, color var(--dur-cepat) ease; }
@@ -872,3 +872,90 @@ body.nx-login { min-height: 100vh; background: var(--kertas-1); overflow-x: hidd
 /* Kartu di dalam modal: jangan dobel bingkai */
 .modal-content > .card, .modal-body > .card { margin: 0; border: 0; border-radius: 0; box-shadow: none; }
 .modal-content > .card > .card-header { border-radius: 0 !important; }
+
+/* ==========================================================================
+   LAPISAN INTERAKSI (toast · dialog konfirmasi · progres navigasi · validasi · transisi halaman)
+   Gerak: transform + opacity saja. Masuk 200–260ms ease-out, keluar lebih cepat.
+   ========================================================================== */
+.nx-inline-form { display: inline; margin: 0; padding: 0; }
+.nx-inline-form .btn { vertical-align: baseline; }
+
+/* ---------- Toast ---------- */
+.nx-toasts { position: fixed; right: 20px; bottom: 20px; z-index: 2600; display: flex; flex-direction: column; gap: 10px; width: min(380px, calc(100vw - 32px)); pointer-events: none; }
+.nx-toast {
+  --tone: var(--stempel); --tone-bg: var(--stempel-50);
+  position: relative; display: grid; grid-template-columns: 28px 1fr 28px; gap: 10px; align-items: start;
+  padding: 14px 12px 16px 14px; overflow: hidden; pointer-events: auto;
+  background: var(--kertas-0); border: 1px solid var(--garis); border-radius: 14px; box-shadow: var(--bayang-3);
+  animation: nx-toast-in 280ms var(--ease-out) backwards;
+}
+.nx-toast--success { --tone: var(--lulus); --tone-bg: var(--lulus-bg); }
+.nx-toast--error   { --tone: var(--tolak); --tone-bg: var(--tolak-bg); }
+.nx-toast-ico { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--tone-bg); color: var(--tone); font-size: 13px; }
+.nx-toast-msg { padding-top: 4px; font-size: 13px; line-height: 20px; font-weight: 600; color: var(--tinta-1); overflow-wrap: anywhere; }
+.nx-toast-x { display: grid; place-items: center; width: 28px; height: 28px; border: 0; border-radius: 8px; background: transparent; color: var(--tinta-4); font-size: 12px; cursor: pointer; transition: background-color var(--dur-cepat) ease, color var(--dur-cepat) ease; }
+.nx-toast-x:hover { background: var(--kertas-2); color: var(--tinta-1); }
+.nx-toast-x:focus-visible { outline: 0; box-shadow: var(--cincin); }
+.nx-toast-time { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--tone); opacity: 0.55; transform-origin: left; animation: nx-toast-time var(--ms, 4500ms) linear forwards; }
+.nx-toast.is-paused .nx-toast-time { animation-play-state: paused; }
+.nx-toast.is-leaving { animation: nx-toast-out 180ms ease-in forwards; pointer-events: none; }
+@keyframes nx-toast-in  { from { opacity: 0; transform: translateY(14px) scale(0.97); } to { opacity: 1; transform: none; } }
+@keyframes nx-toast-out { to { opacity: 0; transform: translateY(8px) scale(0.98); } }
+@keyframes nx-toast-time { to { transform: scaleX(0); } }
+@media (max-width: 575.98px) { .nx-toasts { right: 16px; left: 16px; bottom: 16px; width: auto; } }
+
+/* ---------- Dialog konfirmasi ---------- */
+.nx-dialog { position: fixed; inset: 0; z-index: 2500; display: grid; place-items: center; padding: 16px; }
+.nx-dialog[hidden] { display: none; }
+.nx-dialog-scrim { position: absolute; inset: 0; background: rgba(21, 23, 46, 0.42); opacity: 0; transition: opacity 200ms var(--ease-out); }
+.nx-dialog-box {
+  --tone: var(--stempel); --tone-bg: var(--stempel-50);
+  position: relative; width: min(420px, 100%); padding: 28px 24px 20px; text-align: center; outline: 0;
+  background: var(--kertas-0); border: 1px solid var(--garis); border-radius: var(--r-modal); box-shadow: var(--bayang-3);
+  opacity: 0; transform: scale(0.95); transition: opacity 150ms ease-in, transform 150ms ease-in;
+}
+.nx-dialog-box[data-tone="danger"] { --tone: var(--tolak); --tone-bg: var(--tolak-bg); }
+.nx-dialog.is-open .nx-dialog-scrim { opacity: 1; }
+.nx-dialog.is-open .nx-dialog-box { opacity: 1; transform: none; transition: opacity 200ms var(--ease-out), transform 240ms var(--ease-out); }
+.nx-dialog-ico { display: grid; place-items: center; width: 52px; height: 52px; margin: 0 auto 16px; border-radius: 50%; background: var(--tone-bg); color: var(--tone); font-size: 20px; }
+.nx-dialog-title { margin: 0 0 6px; font-size: 18px; line-height: 26px; font-weight: 800; letter-spacing: -0.01em; color: var(--tinta-1); text-wrap: balance; }
+.nx-dialog-text { margin: 0 0 22px; font-size: 14px; line-height: 22px; color: var(--tinta-2); text-wrap: pretty; }
+.nx-dialog-text:empty { display: none; }
+.nx-dialog-actions { display: flex; gap: 10px; }
+.nx-dialog-actions .btn { flex: 1; height: 44px; border-radius: 12px; }
+.btn-danger-solid { background: var(--tolak); border-color: var(--tolak); color: #fff !important; box-shadow: 0 1px 2px rgba(185, 42, 47, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14); }
+.btn-danger-solid:hover { background: #a02226; border-color: #a02226; }
+.btn-danger-solid:focus { box-shadow: 0 0 0 3px rgba(214, 56, 61, 0.28); }
+@media (max-width: 479.98px) { .nx-dialog-actions { flex-direction: column-reverse; } }
+
+/* ---------- Progres navigasi ---------- */
+.nx-nav-progress { position: fixed; left: 0; top: 0; right: 0; z-index: 3000; height: 3px; background: linear-gradient(90deg, var(--stempel), #8a7dff); transform-origin: left; transform: scaleX(0); opacity: 0; pointer-events: none; }
+.nx-nav-progress.is-on { opacity: 1; animation: nx-nav 12s cubic-bezier(0.1, 0.6, 0.2, 1) forwards; }
+@keyframes nx-nav { from { transform: scaleX(0.02); } 12% { transform: scaleX(0.55); } to { transform: scaleX(0.94); } }
+
+/* ---------- Validasi form ---------- */
+.form-control.is-invalid, .custom-select.is-invalid, .was-validated .form-control:invalid {
+  border-color: var(--tolak); background-image: none;
+  box-shadow: 0 0 0 3px rgba(214, 56, 61, 0.14);
+}
+.form-control.is-invalid:focus { border-color: var(--tolak); box-shadow: 0 0 0 3px rgba(214, 56, 61, 0.22); }
+.nx-err { display: flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 12px; line-height: 18px; font-weight: 600; color: var(--tolak); animation: nx-err-in 200ms var(--ease-out) backwards; }
+.nx-err::before { content: "!"; display: grid; place-items: center; flex: none; width: 14px; height: 14px; border-radius: 50%; background: var(--tolak); color: #fff; font-size: 10px; font-weight: 800; line-height: 1; }
+@keyframes nx-err-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.nx-shake { animation: nx-shake 340ms cubic-bezier(0.36, 0.07, 0.19, 0.97); }
+@keyframes nx-shake { 10%, 90% { transform: translateX(-1px); } 20%, 80% { transform: translateX(2px); } 30%, 50%, 70% { transform: translateX(-4px); } 40%, 60% { transform: translateX(4px); } }
+
+/* ---------- Muncul saat di-scroll ---------- */
+.nx-reveal { opacity: 0; transform: translateY(14px); }
+.nx-reveal.nx-in { opacity: 1; transform: none; transition: opacity 420ms ease-out, transform 460ms var(--ease-out); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-toast, .nx-toast.is-leaving { animation: nx-fade 120ms ease both; }
+  .nx-toast.is-leaving { animation-direction: reverse; }
+  .nx-toast-time { animation: none; display: none; }
+  .nx-dialog-box, .nx-dialog.is-open .nx-dialog-box { transform: none; transition: opacity 120ms linear; }
+  .nx-nav-progress.is-on { animation: none; transform: scaleX(0.6); }
+  .nx-shake { animation: none; }
+  .nx-reveal { opacity: 1; transform: none; }
+}
+@media print { .nx-reveal { opacity: 1 !important; transform: none !important; } .nx-toasts, .nx-dialog, .nx-nav-progress { display: none !important; } }
