@@ -13,6 +13,9 @@ if ($rs_dosen->recordCount() > 0) {
 		$rs_dosen->MoveNext();
 	}
 }
+include_once("../include/nx_aturan.php");
+$f1 = $koneksi->GetRow("SELECT pendidikan_terakhir, status_kepegawaian, tmt_dosen_tetap, ak_kumulatif, ak_penelitian_kumulatif, sertifikat_pendidik, skp_baik, uji_kompetensi FROM dosen WHERE nip_dosen = ?", array($nip_dosen));
+if (!$f1) { $f1 = array('', '', '', 0, 0, 0, 0, 0); }
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +28,7 @@ if ($rs_dosen->recordCount() > 0) {
 	<meta name="author" content="">
 
 	<link rel="manifest" href="site.webmanifest">
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/FT.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('../')); ?>">
 
 	<!-- css here -->
 	<title>Sistem Informasi Kenaikan Jabatan Dosen</title>
@@ -95,6 +98,67 @@ if ($rs_dosen->recordCount() > 0) {
 										</td>
 									</tr>
 									<tr>
+										<td>Pendidikan terakhir</td>
+										<td>
+											<div class="col-sm-4">
+												<select name="pendidikan_terakhir" class="form-control">
+													<option value="">Pilih pendidikan</option>
+													<?php foreach (nx_pendidikan_opsi() as $k => $v) : ?>
+														<option value="<?php echo nx_e($k); ?>" <?php echo (string) $f1[0] === (string) $k ? 'selected' : ''; ?>><?php echo nx_e($v); ?></option>
+													<?php endforeach; ?>
+												</select>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>Status kepegawaian</td>
+										<td>
+											<div class="col-sm-5">
+												<select name="status_kepegawaian" class="form-control">
+													<option value="">Pilih status</option>
+													<?php foreach (nx_status_opsi() as $k => $v) : ?>
+														<option value="<?php echo nx_e($k); ?>" <?php echo (string) $f1[1] === (string) $k ? 'selected' : ''; ?>><?php echo nx_e($v); ?></option>
+													<?php endforeach; ?>
+												</select>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>Diangkat dosen tetap</td>
+										<td>
+											<div class="col-sm-3">
+												<input type="date" name="tmt_dosen_tetap" value="<?php echo nx_e($f1[2]); ?>" class="form-control">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>AK kumulatif SK terakhir</td>
+										<td>
+											<div class="col-sm-3">
+												<input type="number" name="ak_kumulatif" value="<?php echo nx_e($f1[3]); ?>" min="0" max="5000" step="0.01" class="form-control">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>AK penelitian kumulatif</td>
+										<td>
+											<div class="col-sm-3">
+												<input type="number" name="ak_penelitian_kumulatif" value="<?php echo nx_e($f1[4]); ?>" min="0" max="5000" step="0.01" class="form-control">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>Pernyataan</td>
+										<td>
+											<div class="col-sm-9">
+												<div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="skp_baik" name="skp_baik" value="1" <?php echo $f1[6] ? 'checked' : ''; ?>><label class="custom-control-label" for="skp_baik">Predikat SKP minimal baik, 2 tahun berturut-turut</label></div>
+												<div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="uji_kompetensi" name="uji_kompetensi" value="1" <?php echo $f1[7] ? 'checked' : ''; ?>><label class="custom-control-label" for="uji_kompetensi">Sudah lulus uji kompetensi</label></div>
+												<div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="sertifikat_pendidik" name="sertifikat_pendidik" value="1" <?php echo $f1[5] ? 'checked' : ''; ?>><label class="custom-control-label" for="sertifikat_pendidik">Memiliki sertifikat pendidik</label></div>
+												<small class="form-text text-muted">Pernyataan ini diverifikasi kepegawaian saat memeriksa pengajuan.</small>
+											</div>
+										</td>
+									</tr>
+									<tr>
 										<td>Password</td>
 										<td>
 											<div class="col-sm-3">
@@ -120,7 +184,7 @@ if ($rs_dosen->recordCount() > 0) {
 	<script src="../asset/vendor/jquery/jquery.min.js"></script>
 	<script src="../asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<script>
+	<script nonce="<?php echo nx_nonce(); ?>">
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");

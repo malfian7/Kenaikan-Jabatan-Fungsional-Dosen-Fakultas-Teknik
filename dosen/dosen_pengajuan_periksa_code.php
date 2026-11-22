@@ -9,12 +9,11 @@
 		nx_done("dosen_pengajuan_riwayat.php?nip_dosen=" . rawurlencode($nip_dosen), 'error', 'Pengajuan ini sudah dikirim atau tidak dapat dikirim lagi.');
 	}
 
-	// Total dan syarat dihitung server; tidak lagi dipercaya dari alamat/formulir.
-	$total_pak_akhir = (float) $koneksi->GetOne("SELECT COALESCE(SUM(poin_akhir), 0) FROM berkas_pak WHERE id_pengajuan = ?", array($id_pengajuan));
-	$syarat_pak      = (float) $p[1];
-
-	if ($total_pak_akhir >= $syarat_pak) {
-		$koneksi->Execute("UPDATE pengajuan SET tanggal_pengajuan = CURRENT_DATE, status_pengajuan = 'TERKIRIM', total_pak_akhir = ? WHERE id_pengajuan = ? AND status_pengajuan = 'BELUM DIKIRIM'", array((int) round($total_pak_akhir), $id_pengajuan));
+	// Aturan kelayakan dihitung server (sumber yang sama dengan panel kelayakan); tidak dipercaya dari alamat/formulir.
+	include_once("../include/nx_kelayakan.php");
+	$kl = nx_kelayakan($koneksi, $id_pengajuan);
+	if ($kl && $kl['bisa_kirim']) {
+		$koneksi->Execute("UPDATE pengajuan SET tanggal_pengajuan = CURRENT_DATE, status_pengajuan = 'TERKIRIM', total_pak_akhir = ? WHERE id_pengajuan = ? AND status_pengajuan = 'BELUM DIKIRIM'", array((int) round($kl['total']), $id_pengajuan));
 		nx_done("dosen_pengajuan_kirim_sukses.php" . $q, 'success', 'Pengajuan terkirim ke bagian kepegawaian.');
 	}
 	header("location:dosen_pengajuan_kirim_gagal.php" . $q);

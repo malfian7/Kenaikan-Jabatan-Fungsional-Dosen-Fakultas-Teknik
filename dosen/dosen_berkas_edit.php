@@ -25,6 +25,10 @@ if ($rs_berkas->recordCount() > 0) {
 		$rs_berkas->MoveNext();
 	}
 }
+include_once("../include/nx_rubrik_2026.php");
+$nx_kode = $koneksi->GetOne("SELECT kode_rubrik FROM berkas_pak WHERE id_berkas = ?", array($id_berkas));
+$nx_persen = $koneksi->GetOne("SELECT persen_bagian FROM berkas_pak WHERE id_berkas = ?", array($id_berkas));
+if ($nx_persen === false || $nx_persen === null) { $nx_persen = 100; }
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +41,7 @@ if ($rs_berkas->recordCount() > 0) {
 	<meta name="author" content="">
 
 	<link rel="manifest" href="site.webmanifest">
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/FT.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('../')); ?>">
 
 	<!-- css here -->
 	<title>Sistem Informasi Kenaikan Jabatan Dosen</title>
@@ -95,6 +99,7 @@ if ($rs_berkas->recordCount() > 0) {
 									<input type="number" class="form-control" name="volume" placeholder="Volume" required="required" value="<?php echo nx_e($volume); ?>">
 								</div>
 							</div>
+							<?php if (nx_rubrik_penelitian($nx_kode)) { nx_bagian_field($nx_persen); } ?>
 							<input type="submit" name="simpan" value="Simpan Berkas" style="margin: 0 0 0 53%;" class="btn btn-primary">
 						</form>
 					</div>
@@ -108,12 +113,12 @@ if ($rs_berkas->recordCount() > 0) {
 	<script src="../asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" language="javascript" src="../DataTables/assets/js/jquery.dataTables.min.js"></script>
 
-	<script type="text/javascript" class="init">
+	<script type="text/javascript" class="init" nonce="<?php echo nx_nonce(); ?>">
 		$(document).ready(function() {
 			$('#example').DataTable();
 		});
 	</script>
-	<script>
+	<script nonce="<?php echo nx_nonce(); ?>">
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");

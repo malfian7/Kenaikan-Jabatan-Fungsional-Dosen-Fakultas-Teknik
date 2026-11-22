@@ -49,7 +49,7 @@ if ($rs_pengajuan->recordCount() > 0) {
 	<meta name="author" content="">
 
 	<link rel="manifest" href="site.webmanifest">
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/FT.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('../')); ?>">
 
 	<!-- css here -->
 	<title>Sistem Informasi Kenaikan Jabatan Dosen</title>
@@ -114,6 +114,7 @@ if ($rs_pengajuan->recordCount() > 0) {
 						</div>
 					</div>
 				</div>
+				<?php include_once "../include/nx_riwayat.php"; nx_riwayat_panel($koneksi, $id_pengajuan); ?>
 				<h1></h1>
 				<div class="card">
 					<div class="card-header bg-primary text-light"><b>DATA BERKAS</b></div>
@@ -196,12 +197,12 @@ if ($rs_pengajuan->recordCount() > 0) {
 	<script src="../asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" language="javascript" src="../DataTables/assets/js/jquery.dataTables.min.js"></script>
 
-	<script type="text/javascript" class="init">
+	<script type="text/javascript" class="init" nonce="<?php echo nx_nonce(); ?>">
 		$(document).ready(function() {
 			$('#example').DataTable();
 		});
 	</script>
-	<script>
+	<script nonce="<?php echo nx_nonce(); ?>">
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");

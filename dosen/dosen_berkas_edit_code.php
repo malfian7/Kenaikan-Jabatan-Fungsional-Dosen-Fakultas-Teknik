@@ -25,7 +25,16 @@
 		nx_done($formul, 'error', 'Volume harus bilangan bulat antara 1 dan 1000.');
 	}
 
-	$total_poin = (float) $poin * (int) $volume;
-	$koneksi->Execute("UPDATE berkas_pak SET bukti_berkas = ?, volume = ?, poin_1 = ?, poin_2 = ?, poin_akhir = ? WHERE id_berkas = ? AND id_pengajuan = ?",
-		array($bukti_berkas, (int) $volume, $total_poin, $total_poin, $total_poin, $id_berkas, $id_pengajuan));
+	include_once("../include/nx_rubrik_2026.php");
+	$kode  = $koneksi->GetOne("SELECT kode_rubrik FROM berkas_pak WHERE id_berkas = ? AND id_pengajuan = ?", array($id_berkas, $id_pengajuan));
+	$persen = 100.0;
+	if (nx_rubrik_penelitian($kode)) {
+		$persen = nx_bagian_dari_post();
+		if ($persen === null) {
+			nx_done($formul, 'error', 'Pembagian angka kredit harus antara 1% dan 100%.');
+		}
+	}
+	$total_poin = round((float) $poin * (int) $volume * $persen / 100, 2);
+	$koneksi->Execute("UPDATE berkas_pak SET bukti_berkas = ?, volume = ?, poin_1 = ?, poin_2 = ?, poin_akhir = ?, persen_bagian = ? WHERE id_berkas = ? AND id_pengajuan = ?",
+		array($bukti_berkas, (int) $volume, $total_poin, $total_poin, $total_poin, $persen, $id_berkas, $id_pengajuan));
 	nx_done($balik, 'success', 'Perubahan berkas disimpan.');

@@ -16,6 +16,7 @@ $nx_flow_role = 'pegawai';
 	<div class="nx-actions">
 		<a class="btn btn-light-solid" href="pegawai_data_pengajuan.php?<?php echo $nx_q; ?>"><i class="fas fa-file-alt" aria-hidden="true"></i>Periksa pengajuan</a>
 		<a class="btn btn-ghost" href="pegawai_data_penilai.php?<?php echo $nx_q; ?>">Data penilai</a>
+		<a class="btn btn-ghost" href="pegawai_ekspor_pengajuan.php?<?php echo $nx_q; ?>">Ekspor CSV</a>
 	</div>
 </section>
 

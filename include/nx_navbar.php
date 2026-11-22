@@ -29,6 +29,8 @@ if ($nx_initial === '') { $nx_initial = '?'; }
 		<kbd aria-hidden="true">/</kbd>
 	</div>
 
+	<?php include_once __DIR__ . '/nx_notif.php'; if (isset($koneksi)) { nx_notif_bell($koneksi, $nx_role); } ?>
+
 	<div class="nx-user dropdown">
 		<button type="button" class="nx-user-btn" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="nx-avatar" aria-hidden="true"><?php echo $nx_initial; ?></span>

@@ -35,7 +35,7 @@ if ($rs_berkas->recordCount() > 0) {
 	$id_berkas = 0;
 }
 
-$select_rubrik = "SELECT * FROM rubrik";
+$select_rubrik = "SELECT kode_rubrik, aspek_rubrik, kegiatan_rubrik, poin_rubrik FROM rubrik WHERE aktif = 1 ORDER BY kode_rubrik";
 $rs_rubrik = $koneksi->Execute($select_rubrik);
 if ($rs_rubrik->recordCount() > 0) {
 	while (!$rs_rubrik->EOF) {
@@ -43,6 +43,7 @@ if ($rs_rubrik->recordCount() > 0) {
 		$rs_rubrik->MoveNext();
 	}
 }
+include_once("../include/nx_rubrik_2026.php");
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +56,7 @@ if ($rs_rubrik->recordCount() > 0) {
 	<meta name="author" content="">
 
 	<link rel="manifest" href="site.webmanifest">
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/FT.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('../')); ?>">
 
 	<!-- css here -->
 	<title>Sistem Informasi PAK</title>
@@ -155,6 +156,7 @@ if ($rs_rubrik->recordCount() > 0) {
 									<input type="number" class="form-control" name="volume" placeholder="Volume" required="required">
 								</div>
 							</div>
+							<?php if (nx_rubrik_penelitian($kode_rubrik)) { nx_bagian_field(100); } ?>
 							<input type="submit" name="simpan" value="Simpan Berkas" style="margin: 0 0 0 53%;" class="btn btn-primary">
 						</form>
 					</div>
@@ -168,12 +170,12 @@ if ($rs_rubrik->recordCount() > 0) {
 	<script src="../asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" language="javascript" src="../DataTables/assets/js/jquery.dataTables.min.js"></script>
 
-	<script type="text/javascript" class="init">
+	<script type="text/javascript" class="init" nonce="<?php echo nx_nonce(); ?>">
 		$(document).ready(function() {
 			$('#example').DataTable();
 		});
 	</script>
-	<script>
+	<script nonce="<?php echo nx_nonce(); ?>">
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");

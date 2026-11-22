@@ -1,7 +1,7 @@
 <footer class="nx-footer">
 	<div class="nx-wrap">
 		<div>
-			<div class="nx-brandline"><img src="assets/img/logo/FT.png" alt="">Fakultas Teknik UHAMKA</div>
+			<div class="nx-brandline"><img src="<?php echo nx_e(nx_logo('')); ?>" alt=""><?php echo nx_e(nx_pengaturan('institusi')); ?></div>
 			<p class="nx-copy">Sistem Informasi Kenaikan Jabatan Dosen</p>
 			<p class="nx-copy">&copy; <?php echo date('Y'); ?> Hak cipta dilindungi.</p>
 		</div>
@@ -19,7 +19,7 @@
 		</div>
 	</div>
 </footer>
-<script>
+<script nonce="<?php echo nx_nonce(); ?>">
 	(function () {
 		var nav = document.getElementById('nx-site-nav');
 		if (!nav) return;

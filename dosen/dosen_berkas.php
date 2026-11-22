@@ -11,7 +11,7 @@ if ($rs_dosen->recordCount() > 0) {
 		$rs_dosen->MoveNext();
 	}
 }
-$select_rubrik = "SELECT * FROM rubrik";
+$select_rubrik = "SELECT kode_rubrik, aspek_rubrik, kegiatan_rubrik, poin_rubrik FROM rubrik WHERE aktif = 1 ORDER BY kode_rubrik";
 $rs_rubrik = $koneksi->Execute($select_rubrik);
 if ($rs_rubrik->recordCount() > 0) {
 	while (!$rs_rubrik->EOF) {
@@ -42,7 +42,7 @@ if ($rs_berkas->recordCount() > 0) {
 	<meta name="author" content="">
 
 	<link rel="manifest" href="site.webmanifest">
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo/FT.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo nx_e(nx_logo('../')); ?>">
 
 	<!-- css here -->
 	<title>Sistem Informasi Kenaikan Jabatan Dosen</title>
@@ -159,12 +159,12 @@ if ($rs_berkas->recordCount() > 0) {
 	<script src="../asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" language="javascript" src="../DataTables/assets/js/jquery.dataTables.min.js"></script>
 
-	<script type="text/javascript" class="init">
+	<script type="text/javascript" class="init" nonce="<?php echo nx_nonce(); ?>">
 		$(document).ready(function() {
 			$('#example').DataTable();
 		});
 	</script>
-	<script>
+	<script nonce="<?php echo nx_nonce(); ?>">
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");
