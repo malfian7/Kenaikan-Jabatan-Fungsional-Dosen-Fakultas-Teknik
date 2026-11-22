@@ -1,3 +1,4 @@
+<?php include_once("../koneksi/guard.php"); ?>
 <!DOCTYPE html>
 <html lang="id">
 

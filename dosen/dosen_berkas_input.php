@@ -71,8 +71,8 @@ if ($rs_rubrik->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="dosen_beranda.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-info text-light">Riwayat Pengajuan</a>
+				<a href="dosen_beranda.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-info text-light">Riwayat Pengajuan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -107,12 +107,12 @@ if ($rs_rubrik->recordCount() > 0) {
 													<tbody>
 														<?php foreach ($data_rubrik as $value_rubrik) : ?>
 															<tr>
-																<td><?php echo $value_rubrik[0]; ?></td>
-																<td><?php echo $value_rubrik[1]; ?></td>
-																<td><?php echo $value_rubrik[2]; ?></td>
-																<td><?php echo $value_rubrik[3]; ?></td>
+																<td><?php echo nx_e($value_rubrik[0]); ?></td>
+																<td><?php echo nx_e($value_rubrik[1]); ?></td>
+																<td><?php echo nx_e($value_rubrik[2]); ?></td>
+																<td><?php echo nx_e($value_rubrik[3]); ?></td>
 																<td>
-																	<a class="btn btn-sm btn-primary" href="dosen_berkas_input.php?nip_dosen=<?php echo $nip_dosen; ?>&id_pengajuan=<?php echo $id_pengajuan; ?>&kode_rubrik=<?php echo $value_rubrik[0]; ?>">Pilih</a>
+																	<a class="btn btn-sm btn-primary" href="dosen_berkas_input.php?nip_dosen=<?php echo nx_e($nip_dosen); ?>&id_pengajuan=<?php echo nx_e($id_pengajuan); ?>&kode_rubrik=<?php echo nx_e($value_rubrik[0]); ?>">Pilih</a>
 																</td>
 															</tr>
 														<?php endforeach; ?>
@@ -124,23 +124,23 @@ if ($rs_rubrik->recordCount() > 0) {
 								</div>
 							</div>
 						</div>
-						<form action="dosen_berkas_input_code.php?nip_dosen=<?php echo $nip_dosen ?>&id_pengajuan=<?php echo $id_pengajuan ?>&id_berkas=<?php echo $id_berkas + 1 ?>&kode_rubrik=<?php echo $kode_rubrik ?>" method="POST">
+						<form action="dosen_berkas_input_code.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>&id_pengajuan=<?php echo nx_e($id_pengajuan) ?>&kode_rubrik=<?php echo nx_e($kode_rubrik) ?>" method="POST">
 							<div class="form-group">
 								<label class="control-label col-sm-12" for="aspek_rubrik">Aspek:</label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" name="aspek_rubrik" readonly="readonly" value="<?php echo $aspek_rubrik; ?>">
+									<input type="text" class="form-control" name="aspek_rubrik" readonly="readonly" value="<?php echo nx_e($aspek_rubrik); ?>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-12" for="kegiatan_rubrik">Kegiatan:</label>
 								<div class="col-sm-8">
-									<textarea rows="7" class="form-control" name="kegiatan_rubrik" readonly="readonly"><?php echo $kegiatan_rubrik; ?></textarea>
+									<textarea rows="7" class="form-control" name="kegiatan_rubrik" readonly="readonly"><?php echo nx_e($kegiatan_rubrik); ?></textarea>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-12" for="poin">Poin</label>
 								<div class="col-sm-2">
-									<input type="text" class="form-control" name="poin" readonly="readonly" value="<?php echo $poin_rubrik; ?>">
+									<input type="text" class="form-control" name="poin" readonly="readonly" value="<?php echo nx_e($poin_rubrik); ?>">
 								</div>
 							</div>
 							<div class="form-group">

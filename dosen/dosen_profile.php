@@ -40,8 +40,8 @@ if ($rs_dosen->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="dosen_beranda.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-light ">Beranda</a>
-				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-light">Riwayat Pengajuan</a>
+				<a href="dosen_beranda.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-light ">Beranda</a>
+				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-light">Riwayat Pengajuan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -51,33 +51,33 @@ if ($rs_dosen->recordCount() > 0) {
 				<div class="card">
 					<div class="card-header bg-primary text-light"><b>PROFIL</b></div>
 					<div class="card-body">
-						<a class="btn btn-success" href="dosen_profile_ubah.php?nip_dosen=<?php echo $nip_dosen; ?>">UBAH PROFIL</a>
+						<a class="btn btn-success" href="dosen_profile_ubah.php?nip_dosen=<?php echo nx_e($nip_dosen); ?>">UBAH PROFIL</a>
 						<h1></h1>
 						<div class="table-responsive">
 							<table class="table table-borderless" id="tabelberkas" width="100%" cellspacing="0">
 								<tr>
 									<td width="150">NIDN</td>
-									<td><b><?php echo $nip_dosen; ?></b></td>
+									<td><b><?php echo nx_e($nip_dosen); ?></b></td>
 								</tr>
 								<tr>
 									<td>Nama</td>
-									<td><?php echo $nama_dosen; ?></td>
+									<td><?php echo nx_e($nama_dosen); ?></td>
 								</tr>
 								<tr>
 									<td>Unit Kerja</td>
-									<td><?php echo $unit_kerja_dosen; ?></td>
+									<td><?php echo nx_e($unit_kerja_dosen); ?></td>
 								</tr>
 								<tr>
 									<td>Alamat</td>
-									<td><?php echo $alamat_dosen; ?></td>
+									<td><?php echo nx_e($alamat_dosen); ?></td>
 								</tr>
 								<tr>
 									<td>Telepon</td>
-									<td><?php echo $telepon_dosen; ?></td>
+									<td><?php echo nx_e($telepon_dosen); ?></td>
 								</tr>
 								<tr>
 									<td>Password</td>
-									<td><?php echo $password_dosen; ?></td>
+									<td>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</td>
 								</tr>
 							</table>
 						</div>

@@ -60,8 +60,8 @@ if ($rs_berkas->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="dosen_beranda.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-info text-light">Riwayat Pengajuan</a>
+				<a href="dosen_beranda.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-info text-light">Riwayat Pengajuan</a>
 			</div>
 		</div>
 		<!-- Sidebar End -->
@@ -98,12 +98,12 @@ if ($rs_berkas->recordCount() > 0) {
 													<tbody>
 														<?php foreach ($data_rubrik as $value_rubrik) : ?>
 															<tr>
-																<td><?php echo $value_rubrik[0]; ?></td>
-																<td><?php echo $value_rubrik[1]; ?></td>
-																<td><?php echo $value_rubrik[2]; ?></td>
-																<td><?php echo $value_rubrik[3]; ?></td>
+																<td><?php echo nx_e($value_rubrik[0]); ?></td>
+																<td><?php echo nx_e($value_rubrik[1]); ?></td>
+																<td><?php echo nx_e($value_rubrik[2]); ?></td>
+																<td><?php echo nx_e($value_rubrik[3]); ?></td>
 																<td>
-																	<a class="btn btn-sm btn-primary" href="dosen_berkas_input.php?nip_dosen=<?php echo $nip_dosen; ?>&id_pengajuan=<?php echo $id_pengajuan; ?>&kode_rubrik=<?php echo $value_rubrik[0]; ?>">Pilih</a>
+																	<a class="btn btn-sm btn-primary" href="dosen_berkas_input.php?nip_dosen=<?php echo nx_e($nip_dosen); ?>&id_pengajuan=<?php echo nx_e($id_pengajuan); ?>&kode_rubrik=<?php echo nx_e($value_rubrik[0]); ?>">Pilih</a>
 																</td>
 															</tr>
 														<?php endforeach; ?>

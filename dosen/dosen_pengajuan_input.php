@@ -54,8 +54,8 @@ if ($rs_pengajuan->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="dosen_beranda.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-info text-light">Riwayat Pengajuan</a>
+				<a href="dosen_beranda.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-info text-light">Riwayat Pengajuan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -65,17 +65,17 @@ if ($rs_pengajuan->recordCount() > 0) {
 				<div class="card">
 					<div class="card-header bg-primary text-light"><b>MASUKKAN DATA PENGAJUAN</b></div>
 					<div class="card-body">
-						<form action="dosen_pengajuan_input_code.php?id_pengajuan=<?php echo $id_pengajuan + 1 ?>" method="post">
+						<form action="dosen_pengajuan_input_code.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" method="post">
 							<div class="form-group">
 								<label class="control-label col-sm-10" for="nama">Nama</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" name="nama_dosen" readonly="readonly" value="<?php echo $nama_dosen; ?>">
+									<input type="text" class="form-control" name="nama_dosen" readonly="readonly" value="<?php echo nx_e($nama_dosen); ?>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-10" for="nip">NIP</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" name="nip_dosen" readonly="readonly" value="<?php echo $nip_dosen; ?>">
+									<input type="text" class="form-control" name="nip_dosen" readonly="readonly" value="<?php echo nx_e($nip_dosen); ?>">
 								</div>
 							</div>
 							<div class="form-group">
@@ -84,7 +84,7 @@ if ($rs_pengajuan->recordCount() > 0) {
 									<select class="form-control" name="jabatan_asal" required="required">
 										<option value="" selected disabled hidden="hidden">Pilih Jabatan Saat Ini</option>
 										<?php foreach ($data_jabatan as $value_jabatan) : ?>
-											<option><?php echo $value_jabatan[1]; ?></option>
+											<option><?php echo nx_e($value_jabatan[1]); ?></option>
 										<?php endforeach; ?>
 									</select>
 								</div>
@@ -101,7 +101,7 @@ if ($rs_pengajuan->recordCount() > 0) {
 									<select class="form-control" name="jabatan_tujuan" required="required">
 										<option value="" selected disabled hidden="hidden">Pilih Jabatan Tujuan</option>
 										<?php foreach ($data_jabatan as $value_jabatan) : ?>
-											<option><?php echo $value_jabatan[1]; ?></option>
+											<option><?php echo nx_e($value_jabatan[1]); ?></option>
 										<?php endforeach; ?>
 									</select>
 								</div>

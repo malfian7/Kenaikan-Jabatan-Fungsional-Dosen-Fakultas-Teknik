@@ -31,6 +31,7 @@ if ($rs_poin->recordCount() > 0) {
 	}
 }
 
+$total_poin = isset($total_poin) && is_numeric($total_poin) ? (float) $total_poin : 0;
 $update_poin = "UPDATE pengajuan SET total_pak_akhir = '$total_poin' WHERE id_pengajuan = $id_pengajuan;";
 $koneksi->Execute($update_poin);
 
@@ -77,8 +78,8 @@ if ($rs_pengajuan->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="dosen_beranda.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-info text-light">Riwayat Pengajuan</a>
+				<a href="dosen_beranda.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-info text-light">Riwayat Pengajuan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -90,41 +91,41 @@ if ($rs_pengajuan->recordCount() > 0) {
 				</div>
 				<h1></h1>
 				<div class="card">
-					<div class="card-header bg-primary text-light"><b>RIWAYAT PENGAJUAN [<?php echo $status_pengajuan ?>]</b></div>
+					<div class="card-header bg-primary text-light"><b>RIWAYAT PENGAJUAN [<?php echo nx_e($status_pengajuan) ?>]</b></div>
 					<div class="card-body">
 						<div class="table-responsive">
 							<table class="table table-sm table-borderless" width="100%" cellspacing="0">
 								<tr>
 									<td width="250">ID Pengajuan</td>
-									<td><?php echo $id_pengajuan; ?></td>
+									<td><?php echo nx_e($id_pengajuan); ?></td>
 								</tr>
 								<tr>
 									<td>Tanggal Pengajuan</td>
-									<td><?php echo $tanggal_pengajuan; ?></td>
+									<td><?php echo nx_e($tanggal_pengajuan); ?></td>
 								</tr>
 								<tr>
 									<td>Jabatan</td>
-									<td><?php echo $jabatan_asal; ?></td>
+									<td><?php echo nx_e($jabatan_asal); ?></td>
 								</tr>
 								<tr>
 									<td>Tanggal SK</td>
-									<td><?php echo $tanggal_sk; ?></td>
+									<td><?php echo nx_e($tanggal_sk); ?></td>
 								</tr>
 								<tr>
 									<td>Jabatan Tujuan</td>
-									<td><?php echo $jabatan_tujuan; ?></td>
+									<td><?php echo nx_e($jabatan_tujuan); ?></td>
 								</tr>
 								<tr>
 									<td>Dokumen Pendukung</td>
-									<td><a target="_blank" href="<?php echo $dokumen_pendukung ?>"><?php echo $dokumen_pendukung ?></a></td>
+									<td><a target="_blank" href="<?php echo nx_e($dokumen_pendukung) ?>"><?php echo nx_e($dokumen_pendukung) ?></a></td>
 								</tr>
 								<tr>
 									<td>Syarat PAK</td>
-									<td><?php echo $syarat_pak; ?></td>
+									<td><?php echo nx_e($syarat_pak); ?></td>
 								</tr>
 								<tr>
 									<td>Total PAK</td>
-									<td><?php echo $total_pak_akhir; ?></td>
+									<td><?php echo nx_e($total_pak_akhir); ?></td>
 								</tr>
 							</table>
 						</div>
@@ -134,7 +135,7 @@ if ($rs_pengajuan->recordCount() > 0) {
 				<div class="card">
 					<div class="card-header bg-primary text-light"><b>DATA BERKAS</b></div>
 					<div class="card-body">
-						<a href="dosen_berkas.php?nip_dosen=<?php echo $nip_dosen; ?>&id_pengajuan=<?php echo $id_pengajuan; ?>" class="btn btn-success">TAMBAH BERKAS</a>
+						<a href="dosen_berkas.php?nip_dosen=<?php echo nx_e($nip_dosen); ?>&id_pengajuan=<?php echo nx_e($id_pengajuan); ?>" class="btn btn-success">TAMBAH BERKAS</a>
 						<h1></h1>
 						<div class="table-responsive">
 							<table class="table table-bordered" width="100%" cellspacing="0" id="example" class="display">
@@ -155,15 +156,15 @@ if ($rs_pengajuan->recordCount() > 0) {
 									foreach ($data_berkas as $value_berkas) :
 										$count++; ?>
 										<tr>
-											<td><?php echo $count; ?></td>
-											<td><?php echo $value_berkas[1]; ?></td>
-											<td><?php echo $value_berkas[2]; ?></td>
-											<td><a target="_blank" href="<?php echo $value_berkas[3]; ?>">Lihat Berkas</a></td>
-											<td><?php echo $value_berkas[4]; ?></td>
-											<td><?php echo $value_berkas[5]; ?></td>
+											<td><?php echo nx_e($count); ?></td>
+											<td><?php echo nx_e($value_berkas[1]); ?></td>
+											<td><?php echo nx_e($value_berkas[2]); ?></td>
+											<td><a target="_blank" href="<?php echo nx_e($value_berkas[3]); ?>">Lihat Berkas</a></td>
+											<td><?php echo nx_e($value_berkas[4]); ?></td>
+											<td><?php echo nx_e($value_berkas[5]); ?></td>
 											<td>
-												<a class="btn btn-sm btn-info" href="dosen_berkas_edit.php?nip_dosen=<?php echo $nip_dosen; ?>&id_pengajuan=<?php echo $id_pengajuan ?>&id_berkas=<?php echo $value_berkas[0]; ?>">Edit</a>
-												<a class="btn btn-sm btn-danger" href="dosen_berkas_hapus.php?nip_dosen=<?php echo $nip_dosen; ?>&id_pengajuan=<?php echo $id_pengajuan ?>&id_berkas=<?php echo $value_berkas[0]; ?>">Hapus</a>
+												<a class="btn btn-sm btn-info" href="dosen_berkas_edit.php?nip_dosen=<?php echo nx_e($nip_dosen); ?>&id_pengajuan=<?php echo nx_e($id_pengajuan) ?>&id_berkas=<?php echo nx_e($value_berkas[0]); ?>">Edit</a>
+												<form action="dosen_berkas_hapus.php?nip_dosen=<?php echo nx_e($nip_dosen); ?>&id_pengajuan=<?php echo nx_e($id_pengajuan) ?>&id_berkas=<?php echo nx_e($value_berkas[0]); ?>" method="post" class="nx-inline-form"><button type="submit" class="btn btn-sm btn-danger" data-confirm-title="Hapus berkas ini?" data-confirm-text="Berkas akan dihapus dari pengajuan dan tidak bisa dikembalikan." data-confirm-label="Hapus" data-confirm-tone="danger">Hapus</button></form>
 											</td>
 										</tr>
 									<?php endforeach; ?>
@@ -177,10 +178,10 @@ if ($rs_pengajuan->recordCount() > 0) {
 										<p><b>Total PAK</b></p>
 									</td>
 									<td width="60">
-										<p><b><?php echo $total_pak_akhir; ?></b></p>
+										<p><b><?php echo nx_e($total_pak_akhir); ?></b></p>
 									</td>
 									<td width="190">
-										<a href="dosen_pengajuan_periksa_code.php?nip_dosen=<?php echo $nip_dosen; ?>&id_pengajuan=<?php echo $id_pengajuan; ?>&syarat_pak=<?php echo $syarat_pak; ?>&total_pak_akhir=<?php echo $total_pak_akhir; ?>" class="btn btn-success">KIRIM PENGAJUAN</a>
+										<form action="dosen_pengajuan_periksa_code.php?nip_dosen=<?php echo nx_e($nip_dosen); ?>&id_pengajuan=<?php echo nx_e($id_pengajuan); ?>" method="post" class="nx-inline-form"><button type="submit" class="btn btn-success" data-confirm-title="Kirim pengajuan sekarang?" data-confirm-text="Setelah dikirim, berkas tidak dapat diubah sampai kepegawaian selesai memeriksanya." data-confirm-label="Kirim pengajuan" data-confirm-tone="primary">KIRIM PENGAJUAN</button></form>
 									</td>
 								</tr>
 							</table>

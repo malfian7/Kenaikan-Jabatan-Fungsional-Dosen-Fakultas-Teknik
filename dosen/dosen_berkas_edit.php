@@ -53,8 +53,8 @@ if ($rs_berkas->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="dosen_beranda.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-info text-light">Riwayat Pengajuan</a>
+				<a href="dosen_beranda.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-info text-light">Riwayat Pengajuan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -64,35 +64,35 @@ if ($rs_berkas->recordCount() > 0) {
 				<div class="card">
 					<div class="card-header bg-primary text-light"><b>MASUKKAN DATA BERKAS</b></div>
 					<div class="card-body">
-						<form action="dosen_berkas_edit_code.php?nip_dosen=<?php echo $nip_dosen ?>&id_pengajuan=<?php echo $id_pengajuan ?>&id_berkas=<?php echo $id_berkas ?>" method="POST">
+						<form action="dosen_berkas_edit_code.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>&id_pengajuan=<?php echo nx_e($id_pengajuan) ?>&id_berkas=<?php echo nx_e($id_berkas) ?>" method="POST">
 							<div class="form-group">
 								<label class="control-label col-sm-12" for="aspek_rubrik">Aspek:</label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" name="aspek_rubrik" readonly="readonly" value="<?php echo $aspek_rubrik; ?>">
+									<input type="text" class="form-control" name="aspek_rubrik" readonly="readonly" value="<?php echo nx_e($aspek_rubrik); ?>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-12" for="kegiatan_rubrik">Kegiatan:</label>
 								<div class="col-sm-8">
-									<textarea rows="7" class="form-control" name="kegiatan_rubrik" readonly="readonly"> <?php echo $kegiatan_rubrik; ?></textarea>
+									<textarea rows="7" class="form-control" name="kegiatan_rubrik" readonly="readonly"> <?php echo nx_e($kegiatan_rubrik); ?></textarea>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-12" for="poin">Poin</label>
 								<div class="col-sm-2">
-									<input type="text" class="form-control" name="poin" readonly="readonly" value="<?php echo $poin_rubrik; ?>">
+									<input type="text" class="form-control" name="poin" readonly="readonly" value="<?php echo nx_e($poin_rubrik); ?>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-12" for="bukti_berkas">Bukti:</label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" name="bukti_berkas" placeholder="Masukkan link google drive" required="required" value="<?php echo $bukti_berkas; ?>">
+									<input type="text" class="form-control" name="bukti_berkas" placeholder="Masukkan link google drive" required="required" value="<?php echo nx_e($bukti_berkas); ?>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-12" for="volume">Volume:</label>
 								<div class="col-sm-2">
-									<input type="number" class="form-control" name="volume" placeholder="Volume" required="required" value="<?php echo $volume; ?>">
+									<input type="number" class="form-control" name="volume" placeholder="Volume" required="required" value="<?php echo nx_e($volume); ?>">
 								</div>
 							</div>
 							<input type="submit" name="simpan" value="Simpan Berkas" style="margin: 0 0 0 53%;" class="btn btn-primary">

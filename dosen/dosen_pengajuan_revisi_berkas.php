@@ -49,8 +49,8 @@ if ($rs_berkas->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="dosen_beranda.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
-				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-info text-light">Riwayat Pengajuan</a>
+				<a href="dosen_beranda.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-info text-light">Riwayat Pengajuan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -96,41 +96,41 @@ if ($rs_berkas->recordCount() > 0) {
 										$count++; ?>
 										<tr>
 											<td>
-												<center><?php echo $count; ?></center>
+												<center><?php echo nx_e($count); ?></center>
 											</td>
-											<td><?php echo $value_berkas[1]; ?></td>
-											<td><?php echo $value_berkas[2]; ?></td>
-											<td><a target="_blank" href="<?php echo $value_berkas[3]; ?>">Lihat Berkas</a></td>
+											<td><?php echo nx_e($value_berkas[1]); ?></td>
+											<td><?php echo nx_e($value_berkas[2]); ?></td>
+											<td><a target="_blank" href="<?php echo nx_e($value_berkas[3]); ?>">Lihat Berkas</a></td>
 											<td>
-												<center><?php echo $value_berkas[4]; ?></center>
-											</td>
-											<td>
-												<center><?php echo $value_berkas[5]; ?></center>
+												<center><?php echo nx_e($value_berkas[4]); ?></center>
 											</td>
 											<td>
-												<center><b><?php echo $value_berkas[6]; ?></b></center>
+												<center><?php echo nx_e($value_berkas[5]); ?></center>
+											</td>
+											<td>
+												<center><b><?php echo nx_e($value_berkas[6]); ?></b></center>
 											</td>
 											<td>
 												<!-- Button trigger modal -->
-												<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal-<?php echo $value_berkas[0]; ?>">
+												<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal-<?php echo nx_e($value_berkas[0]); ?>">
 													Lihat Catatan
 												</button>
 
 												<!-- Modal -->
-												<div class="modal" id="exampleModal-<?php echo $value_berkas[0]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<div class="modal" id="exampleModal-<?php echo nx_e($value_berkas[0]); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog" role="document">
 														<div class="modal-content">
 															<div class="card-header bg-primary text-light">
 																<b>CATATAN BERKAS</b>
 															</div>
 															<div class="modal-body">
-																<?php echo $value_berkas[7]; ?>
+																<?php echo nx_e($value_berkas[7]); ?>
 															</div>
 														</div>
 													</div>
 												</div>
 												<h6></h6>
-												<a href="dosen_pengajuan_revisi_berkas_ubah.php?nip_dosen=<?php echo $nip_dosen; ?>&id_pengajuan=<?php echo $id_pengajuan ?>&id_berkas=<?php echo $value_berkas[0]; ?>" class="btn btn-sm btn-warning">Revisi Berkas</a>
+												<a href="dosen_pengajuan_revisi_berkas_ubah.php?nip_dosen=<?php echo nx_e($nip_dosen); ?>&id_pengajuan=<?php echo nx_e($id_pengajuan) ?>&id_berkas=<?php echo nx_e($value_berkas[0]); ?>" class="btn btn-sm btn-warning">Revisi Berkas</a>
 											</td>
 										</tr>
 									<?php endforeach; ?>
@@ -138,7 +138,7 @@ if ($rs_berkas->recordCount() > 0) {
 							</table>
 						</div>
 						<h1></h1>
-						<a style="margin: 0 0 0 81%;" href="dosen_pengajuan_revisi_control.php?nip_dosen=<?php echo $nip_dosen ?>&id_pengajuan=<?php echo $id_pengajuan; ?>" class="btn btn-success">REVISI BERKAS SELESAI</a>
+						<form action="dosen_pengajuan_revisi_control.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>&id_pengajuan=<?php echo nx_e($id_pengajuan); ?>" method="post" class="nx-inline-form"><button type="submit" style="margin: 0 0 0 81%;" class="btn btn-success" data-confirm-title="Kirim revisi?" data-confirm-text="Pastikan semua berkas yang ditolak sudah Anda perbaiki." data-confirm-label="Kirim revisi" data-confirm-tone="primary">REVISI BERKAS SELESAI</button></form>
 					</div>
 				</div>
 			</div>

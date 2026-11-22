@@ -40,8 +40,8 @@ if ($rs_dosen->recordCount() > 0) {
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
-				<a href="dosen_beranda.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-light ">Beranda</a>
-				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo $nip_dosen ?>" class="list-group-item list-group-item-action bg-light">Riwayat Pengajuan</a>
+				<a href="dosen_beranda.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-light ">Beranda</a>
+				<a href="dosen_pengajuan_riwayat.php?nip_dosen=<?php echo nx_e($nip_dosen) ?>" class="list-group-item list-group-item-action bg-light">Riwayat Pengajuan</a>
 			</div>
 		</div>
 		<div id="page-content-wrapper">
@@ -53,12 +53,12 @@ if ($rs_dosen->recordCount() > 0) {
 					<div class="card-body">
 						<div class="table-responsive">
 							<table class="table table-borderless" id="tabelberkas" width="100%" cellspacing="0">
-								<form action="dosen_profile_ubah_code.php?nip_dosen=<?php echo $nip_dosen; ?>" method="POST">
+								<form action="dosen_profile_ubah_code.php?nip_dosen=<?php echo nx_e($nip_dosen); ?>" method="POST">
 									<tr>
 										<td width="150">NIDN</td>
 										<td>
 											<div class="col-sm-3">
-												<input type="text" name="nip_dosen" value="<?php echo $nip_dosen; ?>" readonly="readonly" class="form-control">
+												<input type="text" name="nip_dosen" value="<?php echo nx_e($nip_dosen); ?>" readonly="readonly" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -66,7 +66,7 @@ if ($rs_dosen->recordCount() > 0) {
 										<td>Nama</td>
 										<td>
 											<div class="col-sm-8">
-												<input type="text" name="nama_dosen" value="<?php echo $nama_dosen; ?>" class="form-control">
+												<input type="text" name="nama_dosen" value="<?php echo nx_e($nama_dosen); ?>" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -74,7 +74,7 @@ if ($rs_dosen->recordCount() > 0) {
 										<td>Unit Kerja</td>
 										<td>
 											<div class="col-sm-8">
-												<input type="text" name="unit_kerja_dosen" value="<?php echo $unit_kerja_dosen; ?>" class="form-control">
+												<input type="text" name="unit_kerja_dosen" value="<?php echo nx_e($unit_kerja_dosen); ?>" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -82,7 +82,7 @@ if ($rs_dosen->recordCount() > 0) {
 										<td>Alamat</td>
 										<td>
 											<div class="col-sm-8">
-												<input type="text" name="alamat_dosen" value="<?php echo $alamat_dosen; ?>" class="form-control">
+												<input type="text" name="alamat_dosen" value="<?php echo nx_e($alamat_dosen); ?>" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -90,7 +90,7 @@ if ($rs_dosen->recordCount() > 0) {
 										<td>Telepon</td>
 										<td>
 											<div class="col-sm-3">
-												<input type="text" name="telepon_dosen" value="<?php echo $telepon_dosen; ?>" class="form-control">
+												<input type="text" name="telepon_dosen" value="<?php echo nx_e($telepon_dosen); ?>" class="form-control">
 											</div>
 										</td>
 									</tr>
@@ -98,7 +98,7 @@ if ($rs_dosen->recordCount() > 0) {
 										<td>Password</td>
 										<td>
 											<div class="col-sm-3">
-												<input type="text" name="password_dosen" value="<?php echo $password_dosen; ?>" class="form-control">
+												<input type="password" name="password_dosen" value="" class="form-control" minlength="6" autocomplete="new-password" placeholder="Kosongkan jika tidak ingin mengganti">
 											</div>
 										</td>
 									</tr>
