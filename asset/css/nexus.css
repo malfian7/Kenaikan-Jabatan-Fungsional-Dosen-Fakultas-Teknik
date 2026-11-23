@@ -154,12 +154,12 @@ h1:empty { display: block; height: 0; margin: 0; padding: 0; font-size: 0; }
   content: "";
   flex: 0 0 40px; width: 40px; height: 40px;
   border-radius: 12px;
-  background: var(--kertas-0) url("../../assets/img/logo/FT.png") center / 28px 28px no-repeat;
+  background: var(--kertas-0) var(--nx-logo, url("../../assets/img/logo/FT.png")) center / 28px 28px no-repeat;
   box-shadow: 0 0 0 1px var(--garis), var(--bayang-1);
 }
 #sidebar-wrapper .sidebar-heading b { display: block; font-weight: 800; }
 #sidebar-wrapper .sidebar-heading b::before {
-  content: "SIPAK"; display: block;
+  content: var(--nx-app, "SIPAK"); display: block;
   font-size: 16px; line-height: 20px; letter-spacing: 0.02em; color: var(--tinta-1);
 }
 #sidebar-wrapper .sidebar-heading b::after {
@@ -204,6 +204,9 @@ html[data-role="penilai"] #sidebar-wrapper .sidebar-heading b::after { content: 
 #sidebar-wrapper a[href*="_berkas"]::before                 { content: "\f07c"; }  /* folder-open */
 #sidebar-wrapper a[href*="persetujuan"]::before             { content: "\f058"; }  /* check-circle */
 #sidebar-wrapper a[href*="profile"]::before                 { content: "\f2bd"; }  /* user-circle */
+#sidebar-wrapper a[href*="aturan"]::before                  { content: "\f0e3"; }  /* gavel */
+#sidebar-wrapper a[href*="statistik"]::before               { content: "\f080"; }  /* chart-bar */
+#sidebar-wrapper a[href*="pengaturan"]::before              { content: "\f013"; }  /* cog */
 
 @media (hover: hover) and (pointer: fine) {
   #sidebar-wrapper .list-group-item:hover { background: var(--kertas-1) !important; color: var(--tinta-1) !important; }
@@ -231,7 +234,7 @@ html[data-role="penilai"] #sidebar-wrapper .sidebar-heading b::after { content: 
 
 /* Kaki sidebar: bantuan */
 #sidebar-wrapper::after {
-  content: "Fakultas Teknik · UHAMKA";
+  content: var(--nx-inst, "Fakultas Teknik · UHAMKA");
   margin-top: auto; padding: 16px 24px 20px;
   font-size: 11px; font-weight: 500; color: var(--tinta-5);
   border-top: 1px solid var(--garis);
@@ -959,3 +962,88 @@ body.nx-login { min-height: 100vh; background: var(--kertas-1); overflow-x: hidd
   .nx-reveal { opacity: 1; transform: none; }
 }
 @media print { .nx-reveal { opacity: 1 !important; transform: none !important; } .nx-toasts, .nx-dialog, .nx-nav-progress { display: none !important; } }
+
+/* ==========================================================================
+   KELAYAKAN PENGAJUAN (daftar syarat otomatis)
+   ========================================================================== */
+.nx-kelayakan { margin-bottom: 4px; }
+.nx-kl-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.nx-kl-item { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; padding: 10px 10px; margin: 0 -10px; border-radius: 12px; animation: nx-rise 380ms var(--ease-out) backwards; animation-delay: calc(var(--i, 0) * 45ms + 120ms); transition: background-color var(--dur-cepat) ease; }
+@media (hover: hover) and (pointer: fine) { .nx-kl-item:hover { background: var(--kertas-1); } }
+.nx-kl-ico { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; font-size: 11px; background: var(--netral-bg); color: var(--netral); }
+.nx-kl-item.is-ok .nx-kl-ico { background: var(--lulus-bg); color: var(--lulus); }
+.nx-kl-item.is-gagal .nx-kl-ico { background: var(--tolak-bg); color: var(--tolak); }
+.nx-kl-item.is-warn .nx-kl-ico { background: var(--revisi-bg); color: var(--revisi); }
+.nx-kl-item.is-info .nx-kl-ico { background: var(--kirim-bg); color: var(--kirim); }
+.nx-kl-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+.nx-kl-item.is-info .nx-kl-row { margin-bottom: 0; }
+.nx-kl-label { font-size: 13px; font-weight: 600; color: var(--tinta-1); }
+.nx-kl-tag { margin-left: 6px; padding: 1px 7px; border-radius: 999px; background: var(--stempel-50); color: var(--stempel); font-size: 10.5px; font-weight: 700; letter-spacing: 0.02em; vertical-align: 1px; }
+.nx-kl-val { font-size: 12.5px; font-weight: 800; color: var(--tinta-1); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.nx-kl-hint { margin-top: 6px; font-size: 12px; line-height: 18px; color: var(--tinta-3); }
+.nx-kl-item.is-gagal .nx-kl-hint { color: var(--tolak); font-weight: 600; }
+.nx-kl-item.is-warn .nx-kl-hint { color: var(--revisi); font-weight: 600; }
+.nx-kl-foot { margin: 14px 0 0; padding-top: 14px; border-top: 1px solid var(--garis); font-size: 12px; line-height: 18px; color: var(--tinta-3); }
+@media (prefers-reduced-motion: reduce) { .nx-kl-item { animation: nx-fade 140ms ease backwards; animation-delay: 0ms; } }
+@media (max-width: 575.98px) { .nx-kl-row { flex-direction: column; gap: 2px; } }
+
+/* ===== Fase 2: riwayat status ===== */
+.nx-tl { list-style: none; margin: 0; padding: 0 0 0 6px; position: relative; }
+.nx-tl::before { content: ""; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: var(--garis-kuat); border-radius: 2px; }
+.nx-tl-item { position: relative; display: grid; grid-template-columns: 12px 1fr; gap: 14px; padding: 8px 0; animation: nx-rise 380ms var(--ease-out) backwards; animation-delay: calc(var(--i, 0) * 45ms + 100ms); }
+.nx-tl-dot { width: 12px; height: 12px; margin-top: 4px; border-radius: 50%; background: var(--kertas-0); border: 3px solid var(--kirim); position: relative; z-index: 1; box-sizing: border-box; }
+.nx-tl-item.is-ok .nx-tl-dot { border-color: var(--lulus); }
+.nx-tl-item.is-bad .nx-tl-dot { border-color: var(--tolak); }
+.nx-tl-item.is-warn .nx-tl-dot { border-color: var(--revisi); }
+.nx-tl-title { font-weight: 600; color: var(--tinta-1); font-size: 14px; }
+.nx-tl-note { color: var(--tinta-2); font-size: 13px; }
+.nx-tl-meta { color: var(--tinta-3); font-size: 12px; margin-top: 1px; }
+@media (prefers-reduced-motion: reduce) { .nx-tl-item { animation: none; } }
+
+/* ===== Fase 2: lonceng notifikasi ===== */
+.nx-notif { position: relative; margin-left: auto; }
+.nx-search.is-on ~ .nx-notif { margin-left: 0; }
+.nx-topbar .nx-notif + .nx-user, .nx-topbar .nx-search.is-on ~ .nx-notif + .nx-user { margin-left: 0 !important; }
+.nx-notif-btn { position: relative; }
+.nx-notif-badge { position: absolute; top: -5px; right: -5px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--tolak); color: #fff; font-size: 10.5px; font-weight: 700; line-height: 18px; text-align: center; box-shadow: 0 0 0 2px var(--kertas-1); animation: nx-pop 320ms var(--ease-out) backwards; }
+@keyframes nx-pop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.nx-notif-menu { width: 340px; max-width: calc(100vw - 24px); padding: 0; border-radius: var(--r-kartu); border: 1px solid var(--garis); box-shadow: var(--bayang-3); overflow: hidden; }
+.nx-notif-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--garis); font-size: 14px; color: var(--tinta-1); }
+.nx-notif-all { border: 0; background: none; padding: 4px 6px; margin: -4px -6px; border-radius: 8px; color: var(--stempel); font-size: 12.5px; font-weight: 600; cursor: pointer; }
+.nx-notif-all:hover { background: var(--stempel-50); }
+.nx-notif-list { list-style: none; margin: 0; padding: 4px; max-height: 360px; overflow-y: auto; }
+.nx-notif-list .nx-inline-form { display: block; }
+.nx-notif-item { display: grid; grid-template-columns: 8px 1fr; gap: 12px; width: 100%; padding: 10px 12px; border: 0; border-radius: 12px; background: none; text-align: left; cursor: pointer; color: var(--tinta-2); font-size: 13px; line-height: 1.4; transition: background-color var(--dur-cepat) ease; }
+.nx-notif-item small { display: block; margin-top: 2px; color: var(--tinta-3); font-size: 11.5px; }
+.nx-notif-dot { width: 8px; height: 8px; margin-top: 6px; border-radius: 50%; background: transparent; }
+li.is-new .nx-notif-dot { background: var(--stempel); }
+li.is-new .nx-notif-item { color: var(--tinta-1); font-weight: 600; }
+li.is-new .nx-notif-item small { font-weight: 400; }
+@media (hover: hover) and (pointer: fine) { .nx-notif-item:hover { background: var(--kertas-1); } }
+.nx-notif-item:focus-visible { outline: 2px solid var(--stempel); outline-offset: -2px; }
+.nx-notif-empty { padding: 28px 16px; text-align: center; color: var(--tinta-3); font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { .nx-notif-badge { animation: none; } }
+
+.nx-cetak-link { font-weight: 600; margin-top: -2px; }
+
+.nx-form-grid { max-width: 640px; }
+.nx-form-grid .form-group { margin-bottom: 16px; }
+
+/* ===== Fase 3: statistik ===== */
+.nx-grid--even { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 1099.98px) { .nx-grid--even { grid-template-columns: 1fr; } }
+.nx-chart { display: block; width: 100%; height: auto; }
+.nx-chart-axis { stroke: var(--garis-kuat); stroke-width: 1; }
+.nx-chart-bar { fill: var(--stempel); transform-box: fill-box; transform-origin: bottom center; animation: nx-grow 520ms var(--ease-out) backwards; animation-delay: calc(var(--i, 0) * 30ms + 120ms); }
+@keyframes nx-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.nx-chart-val { fill: var(--tinta-2); font-size: 12px; font-weight: 700; }
+.nx-chart-lab { fill: var(--tinta-3); font-size: 11px; }
+.nx-lst { list-style: none; margin: 0; padding: 0; }
+.nx-lst > li { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--garis); color: var(--tinta-1); font-weight: 600; font-size: 13.5px; }
+.nx-lst > li:last-child { border-bottom: 0; }
+.nx-lst small { display: block; color: var(--tinta-3); font-weight: 500; font-size: 12px; }
+.nx-lst b { color: var(--tinta-1); font-variant-numeric: tabular-nums; }
+.nx-lst > li.is-total { background: var(--stempel-50); margin: 4px -12px 0; padding: 11px 12px; border-radius: 12px; border-bottom: 0; }
+.nx-lst--bar > li .nx-bar-track { grid-column: 1 / -1; }
+.nx-note { margin: 10px 0 0; color: var(--tinta-3); font-size: 12px; }
+@media (prefers-reduced-motion: reduce) { .nx-chart-bar { animation: none; } }
