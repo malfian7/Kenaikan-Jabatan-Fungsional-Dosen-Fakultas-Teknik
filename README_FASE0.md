@@ -67,3 +67,7 @@
 - Nama aplikasi, nama institusi, nama unit, jabatan dan nama penandatangan, serta logo (PNG/JPG maksimal 1 MB, diperiksa isinya, nama file diacak, logo lama dihapus). Tampil di halaman depan, masuk, sidebar, dan lembar usulan.
 - Backup database sebagai berkas `.sql` lewat tombol (POST + CSRF), tanpa bergantung pada `mysqldump`. Pulihkan lewat phpMyAdmin. Berkas berisi hash kata sandi, simpan di tempat aman.
 - Teks sejarah di `about.php` masih khusus UHAMKA; ganti sesuai institusi Anda.
+
+### Statistik dan panduan (Fase 3, lanjutan)
+- **Statistik** (menu pegawai): kartu ringkasan, pengajuan per bulan (12 bulan terakhir berdasarkan data, grafik SVG dengan teks alternatif), lama rata-rata tiap tahap (pemeriksaan, penilaian, keputusan, total) dari `riwayat_status`, jumlah per jabatan tujuan, beban tiap penilai, dan lima antrean pemeriksaan terlama. Lama proses hanya mencakup pengajuan yang tercatat sejak fitur riwayat dipasang; pengajuan lama tidak ikut agar rata-rata tidak menyesatkan.
+- **Panduan** per peran (menu pengguna di pojok kanan atas, "Panduan"): langkah kerja, arti status, dan pertanyaan umum. Halaman bisa dicetak atau disimpan sebagai PDF. Isi ada di `include/nx_panduan.php`; ubah teksnya bila alur institusi berbeda.

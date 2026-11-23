@@ -45,6 +45,7 @@ foreach (array('Lektor', 'Lektor Kepala', 'Profesor') as $nm_jenjang) {
 			<div class="sidebar-heading"><b>Main Menu</b></div>
 			<div class="list-group list-group-flush">
 				<a href="pegawai_beranda.php?nip_pegawai=<?php echo nx_e($nip_pegawai) ?>" class="list-group-item list-group-item-action bg-light">Beranda</a>
+				<a href="pegawai_statistik.php?nip_pegawai=<?php echo nx_e($nip_pegawai) ?>" class="list-group-item list-group-item-action bg-light">Statistik</a>
 				<a href="pegawai_data_penilai.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Data Penilai</a>
 				<a href="pegawai_data_pengajuan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-light">Data Pengajuan</a>
 				<a href="pegawai_aturan.php?nip_pegawai=<?php echo nx_e($nip_pegawai); ?>" class="list-group-item list-group-item-action bg-info text-light">Aturan Jabatan</a>
