@@ -67,7 +67,8 @@ function nx_stat_card($href, $icon, $tone, $label, $value, $note)
 		echo '<i class="fas fa-arrow-right nx-stat-arrow" aria-hidden="true"></i>';
 	}
 	echo '</span>';
-	echo '<span class="nx-stat-value" data-count="' . (int) $value . '">' . (int) $value . '</span>';
+	$num = is_int($value) || ctype_digit((string) $value);
+	echo '<span class="nx-stat-value"' . ($num ? ' data-count="' . (int) $value . '"' : '') . '>' . ($num ? (int) $value : nx_e($value)) . '</span>';
 	echo '<span class="nx-stat-note">' . nx_e($note) . '</span>';
 	echo '</' . $tag . '>';
 }

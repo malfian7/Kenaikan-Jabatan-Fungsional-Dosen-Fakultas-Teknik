@@ -46,6 +46,7 @@ if ($nx_initial === '') { $nx_initial = '?'; }
 				<span>Masuk sebagai <?php echo $nx_role; ?></span>
 			</div>
 			<a class="dropdown-item" href="<?php echo $nx_profile; ?>"><i class="fas fa-user-circle" aria-hidden="true"></i>Profil saya</a>
+			<a class="dropdown-item" href="<?php echo nx_e($nx_role); ?>_panduan.php"><i class="fas fa-book-open" aria-hidden="true"></i>Panduan</a>
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item nx-danger" href="<?php echo $nx_logout; ?>"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>Log out</a>
 		</div>
